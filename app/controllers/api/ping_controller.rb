@@ -1,6 +1,6 @@
 module API
   class PingController < APIController
-    before_action :find_or_create_widget
+    before_action :find_widget
 
     def create
       @heartbeat = @widget.widgetable
@@ -9,8 +9,8 @@ module API
 
     private
 
-      def find_or_create_widget
-        @widget = Current.dashboard.widgets.heartbeats.where(name: params[:name]).first_or_create(widgetable: Heartbeat.new)
+      def find_widget
+        @widget = Current.dashboard.widgets.heartbeats.find_by!(name: params[:name])
       end
 
   end

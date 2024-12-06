@@ -8,5 +8,8 @@ class Widget < ApplicationRecord
   # Uniq validation:
   # There can only be one widget with the same name and type in a dashboard
   validates :name, presence: true, uniqueness: {scope: [:dashboard_id, :widgetable_type]}
+
+  # Delegate status methods to the widgetable
+  delegate :status, :new, :up, :down, to: :widgetable
 end
 
