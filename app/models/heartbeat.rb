@@ -1,9 +1,5 @@
-# Heartbeat
-# schedule_period (string)
-# schedule_number (int)
-# grace_period (int)
-# pinged_at (datetime)
-# alerted_at (datetime)
+# Heartbeats are uptime monitors for bg jobs
+# They have a schedule
 class Heartbeat < ApplicationRecord
   include Alertable, Widgetable
 
