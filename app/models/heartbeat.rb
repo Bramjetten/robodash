@@ -1,3 +1,9 @@
+# Heartbeat
+# schedule_period (string)
+# schedule_number (int)
+# grace_period (int)
+# pinged_at (datetime)
+# alerted_at (datetime)
 class Heartbeat < ApplicationRecord
   include Alertable, Widgetable
 
