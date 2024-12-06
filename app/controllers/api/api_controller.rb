@@ -1,13 +1,13 @@
 module API
-  class APIController < ActionController::Base
+  class APIController < ActionController::API
     before_action :set_current_dashboard
 
     private
 
       def set_current_dashboard
-        Current.dashboard = Dashboard.find_by!(dashboard_token: dashboard_token)
+        Current.dashboard = Dashboard.find_by!(token: dashboard_token)
       rescue ActiveRecord::RecordNotFound
-        render json: {error: "Dashboard not found"}, status: :unauthorized
+        render json: {error: "Dashboard not found"}, status: :not_found
       end
       
       def dashboard_token
