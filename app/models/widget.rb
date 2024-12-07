@@ -1,3 +1,10 @@
+# The widget class contains the unique name of a widget
+# and manages alerts/notifications
+#
+# The widgetable is the thing that actually tracks uptime
+# - Heartbeat
+# - TODO: Counter
+# - TODO: UptimeMonitor
 class Widget < ApplicationRecord
   belongs_to :dashboard
   belongs_to :widgetable, polymorphic: true
