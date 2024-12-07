@@ -6,7 +6,7 @@ module Widgetable
     has_one :widget, as: :widgetable, dependent: :destroy
 
     # Delegate alert methods to widget for easy access
-    delegate :alert!, :clear_alert!, to: :widget
+    delegate :alert!, :clear!, to: :widget
 
     # The widgetable itself itsn't actually alerted, but the widget
     # these scopes make it easy to do things like Heartbeat.alerted.up (to fetch heartbeats that are up and alerted)
@@ -25,6 +25,10 @@ module Widgetable
   # :new, :up or :down
   def status
     raise NotImplementedError, "#{self.class} must implement #status"
+  end
+
+  def alert_message
+    raise NotImplementedError, "#{self.class} must implement #alert_message"
   end
 
   def new?

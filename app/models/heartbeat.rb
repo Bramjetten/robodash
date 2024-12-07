@@ -28,6 +28,11 @@ class Heartbeat < ApplicationRecord
     pinged_at > ping_expected_before ? :up : :down
   end
 
+  # This is the message that is used when something goes wrong
+  def alert_message
+    "Ping expected before: #{ping_expected_before}"
+  end
+
   private
 
     # Grace period is in seconds so we can do Robodash.ping("some-widget", grace_period: 30.minutes) in the Ruby gem

@@ -27,14 +27,13 @@ class Widget < ApplicationRecord
     { name: name, status: status }
   end
 
+  # Returns a WidgetAlert object with some useful methods (like .message)
   def alert!
-    touch(:alerted_at)
-    # Send a notification!
+    WidgetAlert.create(self)
   end
 
   def clear_alert!
-    update(alerted_at: nil)
-    # Send a notification!
+    WidgetAlert.destroy(self)
   end
 
   def alerted?
