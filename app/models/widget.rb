@@ -21,11 +21,6 @@ class Widget < ApplicationRecord
   # Delegate status methods to the widgetable
   delegate :status, :new, :up, :down, to: :widgetable
 
-  # Simple JSON for the response in the API
-  def to_json
-    { name: name, status: status }
-  end
-
   # These objects send emails and notifications
   # They are not persisted
   def alert!

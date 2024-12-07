@@ -11,7 +11,7 @@ module API
 
     def create
       if @heartbeat.update(heartbeat_params) # This updates pinged_at *and* any heartbeat settings
-        render json: @heartbeat.widget.to_json
+        render json: @heartbeat.widget.to_json(only: [:name], methods: [:status])
       else
         render json: {errors: @heartbeat.errors.full_messages}, status: :unprocessable_entity
       end
