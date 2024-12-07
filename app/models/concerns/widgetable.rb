@@ -4,6 +4,9 @@ module Widgetable
   included do
     # Destroying the widgetable (Heartbeat) also destroys the widget
     has_one :widget, as: :widgetable, dependent: :destroy
+
+    # Delegate alert methods to widget
+    delegate :alert!, :clear_alert!, to: :widget
   end
 
   # Each widgetable must implement this method and return

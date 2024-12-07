@@ -37,6 +37,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_06_205544) do
     t.string "widgetable_type", null: false
     t.bigint "widgetable_id", null: false
     t.string "name"
+    t.datetime "alerted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["dashboard_id"], name: "index_widgets_on_dashboard_id"
