@@ -1,1 +1,6 @@
-<%= widget.name %>: <%= widget.status %> (alerted: <%= widget.alerted? %>)
+<div>
+  <h1><%= widget.name %></h1>
+  <div><%= widget.status %></div>
+  <%= render widget.widgetable %>
+</div>
+
