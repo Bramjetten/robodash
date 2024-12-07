@@ -7,7 +7,7 @@ class Heartbeat < ApplicationRecord
 
   # For use in scopes
   PING_EXPECTED_BEFORE_SQL = <<~SQL
-    (now() - CAST(heartbeats.schedule_number||' '||heartbeats.schedule_period AS Interval) - CAST(heartbeats.grace_period||' seconds' AS Interval))
+    (now() - CAST(schedule_number||' '||schedule_period AS Interval) - CAST(grace_period||' seconds' AS Interval))
   SQL
 
   # Each heartbeat needs a schedule and grace period
@@ -15,8 +15,8 @@ class Heartbeat < ApplicationRecord
   validates :schedule_period, inclusion: { in: SCHEDULE_PERIODS }
   validates :schedule_number, numericality: { greater_than: 0, only_integer: true } 
 
-  scope :down, -> { where("heartbeats.pinged_at < #{PING_EXPECTED_BEFORE_SQL}") }
-  scope :up, -> { where("heartbeats.pinged_at >= #{PING_EXPECTED_BEFORE_SQL}") }
+  scope :down, -> { where("pinged_at < #{PING_EXPECTED_BEFORE_SQL}") }
+  scope :up, -> { where("pinged_at >= #{PING_EXPECTED_BEFORE_SQL}") }
 
   # Just updating the timestamp is enough
   def ping!
