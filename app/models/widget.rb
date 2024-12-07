@@ -1,5 +1,4 @@
-# The widget class contains the unique name of a widget
-# and manages alerts/notifications
+# Widgets!
 #
 # The widgetable is the thing that actually tracks uptime
 # - Heartbeat
@@ -27,8 +26,8 @@ class Widget < ApplicationRecord
     { name: name, status: status }
   end
 
-  # Returns a WidgetAlert object with some useful methods (like .message)
-  # this is used by things like the WidgetAlertMailer to send notifications/emails
+  # These objects send emails and notifications
+  # They are not persisted
   def alert!
     WidgetAlert.create(self)
   end
