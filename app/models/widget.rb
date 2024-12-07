@@ -19,7 +19,7 @@ class Widget < ApplicationRecord
   validates :name, presence: true, uniqueness: {scope: [:dashboard_id, :widgetable_type]}
 
   # Delegate status methods to the widgetable
-  delegate :status, :new, :up, :down, to: :widgetable
+  delegate :status, :new?, :up?, :down?, to: :widgetable
 
   # These objects send emails and notifications
   # They are not persisted

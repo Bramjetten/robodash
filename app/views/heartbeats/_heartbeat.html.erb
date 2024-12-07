@@ -1,2 +1,10 @@
-Ping: <%= heartbeat.pinged_at %>
-Schedule: <%= heartbeat.schedule_number %> <%= heartbeat.schedule_period %> (<%= heartbeat.grace_period %>)
+<div class="text-sm">
+  <%= heartbeat.pinged_at %>
+  Schedule: <%= heartbeat.schedule_number %> <%= heartbeat.schedule_period %> (<%= heartbeat.grace_period %>)
+
+  <% if heartbeat.down? %>
+    <div class="text-red-500">
+      <%= heartbeat.alert_message %>
+    </div>
+  <% end %>
+</div>

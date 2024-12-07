@@ -1,6 +1,22 @@
-<div>
-  <h1><%= widget.name %></h1>
-  <div><%= widget.status %></div>
+<div class="rounded-xl p-2">
+  <div class="flex items-center space-x-1.5">
+    <% if widget.up? %>
+      <div class="w-5 h-2 shadow-sm shadow-zinc-500 border-2 border-zinc-900 rounded-full bg-green-600">
+        <div class="w-4 h-1 rounded-full bg-green-400 shadow-md shadow-green-500 animate-pulse"></div>
+      </div>
+    <% end %>
+
+    <% if widget.down? %>
+      <div class="w-5 h-2 shadow-sm shadow-zinc-500 border-2 border-zinc-900 rounded-full bg-red-600">
+        <div class="w-4 h-1 rounded-full bg-red-500 shadow-md shadow-red-500 animate-pulse"></div>
+      </div>
+    <% end %>
+
+    <div class="font-semibold <%= 'text-red-500' if widget.down? %>">
+      <%= widget.name %>
+    </div>
+  </div>
+
   <%= render widget.widgetable %>
 </div>
 

@@ -1,1 +1,9 @@
-<%= render @dashboard.widgets %>
+<% content_for(:title) { @dashboard.name } %>
+
+<div class="p-10">
+  <h1 class="text-3xl font-bold mb-4"><%= @dashboard.name %></h1>
+
+  <div class="grid grid-cols-4 gap-4">
+    <%= render @dashboard.widgets %>
+  </div>
+</div>
