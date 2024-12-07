@@ -28,6 +28,7 @@ class Widget < ApplicationRecord
   end
 
   # Returns a WidgetAlert object with some useful methods (like .message)
+  # this is used by things like the WidgetAlertMailer to send notifications/emails
   def alert!
     WidgetAlert.create(self)
   end

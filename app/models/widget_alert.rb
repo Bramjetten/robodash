@@ -4,20 +4,34 @@ class WidgetAlert
   def initialize(widget)
     @widget = widget
   end
+
+  def name
+    widget.name
+  end
   
   def message
-    "Something went wrong with #{widget.name}: #{widget.widgetable.alert_message}"
+    widget.widgetable.alert_message
   end
 
   class << self
     def create(widget)
-      widget.touch(:alerted_at)
-      new(widget)
+      widget_alert = new(widget)
+      widget.transaction do
+        widget.touch(:alerted_at)
+        WidgetAlertMailer.alert(widget_alert)
+      end
+
+      widget_alert
     end
 
     def destroy(widget)
-      widget.update(alerted_at: nil)
-      new(widget)
+      widget_alert = new(widget)
+      widget.transaction do
+        widget.update(alerted_at: nil)
+        WidgetAlertMailer.clear(widget_alert)
+      end
+
+      widget_alert
     end
   end
 
