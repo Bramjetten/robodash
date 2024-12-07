@@ -15,9 +15,11 @@ module Widgetable
   end
 
   class_methods do
-    def find_by_name!(widget_name)
+    def find_or_create_by_name!(widget_name)
       raise "Current.dashboard must be set before calling this method" unless Current.dashboard
       Current.dashboard.widgets.where(widgetable_type: name).find_by!(name: widget_name).widgetable
+    rescue ActiveRecord::RecordNotFound
+      Current.dashboard.widgets.create!(name: widget_name, widgetable: new).widgetable
     end
   end
 

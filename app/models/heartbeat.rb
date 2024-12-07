@@ -11,9 +11,8 @@ class Heartbeat < ApplicationRecord
   SQL
 
   # Each heartbeat needs a schedule and grace period
-  validates :grace_period, presence: true
   validates :schedule_period, inclusion: { in: SCHEDULE_PERIODS }
-  validates :schedule_number, numericality: { greater_than: 0, only_integer: true } 
+  validates :schedule_number, :grace_period, presence: true, numericality: { greater_than: 0, only_integer: true } 
 
   scope :down, -> { where("pinged_at < #{PING_EXPECTED_BEFORE_SQL}") }
   scope :up, -> { where("pinged_at >= #{PING_EXPECTED_BEFORE_SQL}") }

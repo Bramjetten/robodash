@@ -1,19 +1,33 @@
 # PingController is only meant for Heartbeats right now
+# Works like this: POST api/ping#create
+# Body:
+# - name (required)
+# - schedule_number
+# - schedule_period
+# - grace_period
 module API
   class PingController < APIController
     before_action :find_heartbeat
 
     def create
-      @heartbeat.ping! # Pinging a heartbeat sets its pinged_at to the current time
-      render json: @heartbeat.widget.to_json
+      if @heartbeat.update(heartbeat_params) # This updates pinged_at *and* any heartbeat settings
+        render json: @heartbeat.widget.to_json
+      else
+        render json: {errors: @heartbeat.errors.full_messages}, status: :unprocessable_entity
+      end
     end
 
     private
 
+      # These attributes can be set using the API
+      # That way it's possible to setup a new heartbeat without using the UI
+      # (or update its schedule)
+      def heartbeat_params
+        params.permit(:schedule_number, :schedule_period, :grace_period).merge(pinged_at: Time.current)
+      end
+
       def find_heartbeat
-        @heartbeat = Heartbeat.find_by_name!(params[:name])
-      rescue ActiveRecord::RecordNotFound
-        render json: {error: "Widget not found"}, status: :not_found
+        @heartbeat = Heartbeat.find_or_create_by_name!(params[:name])
       end
 
   end
