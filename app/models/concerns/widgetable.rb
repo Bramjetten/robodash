@@ -5,8 +5,11 @@ module Widgetable
     # Destroying the widgetable (Heartbeat) also destroys the widget
     has_one :widget, as: :widgetable, dependent: :destroy
 
-    # Delegate alert methods to widget
+    # Delegate alert methods to widget for easy access
     delegate :alert!, :clear_alert!, to: :widget
+
+    scope :not_alerted, -> { joins(:widget).merge(Widget.not_alerted) }
+    scope :alerted, -> { joins(:widget).merge(Widget.alerted) }
   end
 
   # Each widgetable must implement this method and return
