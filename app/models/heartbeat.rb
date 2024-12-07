@@ -17,11 +17,6 @@ class Heartbeat < ApplicationRecord
   scope :down, -> { where("pinged_at < #{PING_EXPECTED_BEFORE_SQL}") }
   scope :up, -> { where("pinged_at >= #{PING_EXPECTED_BEFORE_SQL}") }
 
-  # Just updating the timestamp is enough
-  def ping!
-    touch(:pinged_at)
-  end
-
   def status
     return :new if pinged_at.blank?
     pinged_at > ping_expected_before ? :up : :down
