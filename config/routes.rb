@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   namespace :api do
     post "ping" => "ping#create"
+    post "count" => "count#create"
   end
 
   resources :dashboards, only: [:show]

@@ -24,7 +24,7 @@ class Heartbeat < ApplicationRecord
 
   # This is the message that is used when something goes wrong
   def alert_message
-    "Ping expected before: #{ping_expected_before}"
+    "Ping expected before: #{I18n.l(ping_expected_before, format: :long)}"
   end
 
   private

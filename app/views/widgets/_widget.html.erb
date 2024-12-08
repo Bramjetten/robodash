@@ -1,22 +1,31 @@
-<div class="rounded-xl p-2">
-  <div class="flex items-center space-x-1.5">
-    <% if widget.up? %>
-      <div class="w-5 h-2 shadow-sm shadow-zinc-500 border-2 border-zinc-900 rounded-full bg-green-600">
-        <div class="w-4 h-1 rounded-full bg-green-400 shadow-md shadow-green-500 animate-pulse"></div>
-      </div>
-    <% end %>
+<div class="rounded-xl">
+  <div class="flex space-x-1.5">
+    <div class="mt-1">
+      <% if widget.up? %>
+        <div class="size-4 rounded-full bg-zinc-900 border border-[1px] border-zinc-600 flex items-center justify-center">
+          <div class="size-2.5 rounded-full bg-[#4CFF00] drop-shadow-[0_0_5px_#44EF00]"></div>
 
-    <% if widget.down? %>
-      <div class="w-5 h-2 shadow-sm shadow-zinc-500 border-2 border-zinc-900 rounded-full bg-red-600">
-        <div class="w-4 h-1 rounded-full bg-red-500 shadow-md shadow-red-500 animate-pulse"></div>
-      </div>
-    <% end %>
+          <div class="opacity-50 absolute">
+            <% delay = %w[150ms 500ms 700ms].sample %>
+            <div class="size-2.5 rounded-full bg-[#4CFF00] drop-shadow-[0_0_3px_#44EF00] animate-pulse" style="animation-delay: <%= delay %>"></div>
+          </div>
+        </div>
+      <% end %>
 
-    <div class="font-semibold <%= 'text-red-500' if widget.down? %>">
-      <%= widget.name %>
+      <% if widget.down? %>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-4 text-[#f10000] drop-shadow-[0_2px_4px_rgba(255,0,0,0.75)]">
+          <path d="M11.983 1.907a.75.75 0 0 0-1.292-.657l-8.5 9.5A.75.75 0 0 0 2.75 12h6.572l-1.305 6.093a.75.75 0 0 0 1.292.657l8.5-9.5A.75.75 0 0 0 17.25 8h-6.572l1.305-6.093Z" />
+        </svg>
+      <% end %>
+    </div>
+
+    <div>
+      <div class="font-semibold <%= 'text-[#f10000]' if widget.down? %>">
+        <%= widget.name %>
+      </div>
+      <%= render widget.widgetable %>
     </div>
   </div>
 
-  <%= render widget.widgetable %>
 </div>
 
