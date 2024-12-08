@@ -1,5 +1,5 @@
 <div class="text-sm">
-  <div class="text-sm <%= heartbeat.down? ? 'text-[#f10000]' : 'text-white' %>">
+  <div class="text-sm <%= heartbeat.down? ? 'text-red-500' : 'text-white' %>">
     <%= time_ago_in_words heartbeat.pinged_at %> ago
   </div>
 
