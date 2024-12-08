@@ -2,7 +2,18 @@
 
 <div class="p-10 bg-zinc-900/60 min-h-screen">
   <div class="flex items-center justify-between mb-8">
-    <h1 class="text-3xl font-bold"><%= @dashboard.name %></h1>
+    <h1 class="text-3xl font-bold flex items-center">
+      <%= @dashboard.name %>
+
+      <% if @dashboard.down? %>
+        <div class="flex items-center text-base text-[#f10000]">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-6 ml-2 mr-2 text-[#f10000] drop-shadow-[0_2px_4px_rgba(255,0,0,0.75)]">
+            <path d="M11.983 1.907a.75.75 0 0 0-1.292-.657l-8.5 9.5A.75.75 0 0 0 2.75 12h6.572l-1.305 6.093a.75.75 0 0 0 1.292.657l8.5-9.5A.75.75 0 0 0 17.25 8h-6.572l1.305-6.093Z" />
+          </svg>
+          <%= @dashboard.widgets.to_a.keep_if(&:down?).size %> issue
+        </div>
+      <% end %>
+    </h1>
 
     <button class="flex items-center border border-zinc-700 bg-zinc-900/50 backdrop-blur-sm hover:bg-zinc-800 rounded-lg px-2 py-1">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 mr-2">
