@@ -1,5 +1,7 @@
 # TODO: warning light
 # TODO: stale after hour of no monitoring
+# TODO: parse response_code with string (like OK, Not Found, etc.)
+# TODO: make it so that this needs to be verified twice
 class UptimeMonitor < ApplicationRecord
   include Widgetable
 
@@ -18,10 +20,25 @@ class UptimeMonitor < ApplicationRecord
     "URL could not be reached"
   end
 
+  def ping_for_uptime!
+    response = ping_url!
+    update(response_code: response[:response].code, response_time: response[:time])
+  rescue
+    update(response_code: nil, response_time: nil)
+  end
+
   private
 
     def response_ok?
       response_code == 200
+    end
+
+    def ping_url!
+      t1 = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+      response = HTTParty.get(url, {timeout: 10})
+      t2 = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+      delta = (t2 - t1) * 1000
+      {response: response, time: delta.to_i}
     end
 
 end
