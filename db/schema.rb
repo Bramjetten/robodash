@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_08_094528) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_09_144508) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -36,6 +36,14 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_08_094528) do
     t.integer "grace_period", default: 60, null: false
     t.datetime "pinged_at"
     t.datetime "alerted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "uptime_monitors", force: :cascade do |t|
+    t.string "url", null: false
+    t.integer "response_time"
+    t.integer "response_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
