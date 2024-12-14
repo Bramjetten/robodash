@@ -1,7 +1,7 @@
 # Heartbeats are uptime monitors for bg jobs
 # They have a schedule
 class Heartbeat < ApplicationRecord
-  include Widgetable
+  include Alertable, Widgetable
 
   SCHEDULE_PERIODS = %w[month week day hour minute]
 

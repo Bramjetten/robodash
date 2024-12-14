@@ -21,6 +21,14 @@ class Widget < ApplicationRecord
   # Delegate status methods to the widgetable
   delegate :status, :new?, :up?, :down?, to: :widgetable
 
+  def alerted?
+    alerted_at.present?
+  end
+
+  def not_alerted?
+    alerted_at.blank?
+  end
+
   # These objects send emails and notifications
   # They are not persisted
   def alert!

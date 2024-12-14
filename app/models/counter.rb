@@ -1,7 +1,7 @@
 # Counters are monitors for numbers
 # They can have a minimum or maximum value (optional)
 class Counter < ApplicationRecord
-  include Widgetable
+  include Alertable, Widgetable
 
   scope :down, -> { where("(min IS NOT NULL AND count < min) OR (max IS NOT NULL AND count > max)") }
   scope :up, -> { where("(min IS NULL OR count >= min) AND (max IS NULL OR count <= max)") }

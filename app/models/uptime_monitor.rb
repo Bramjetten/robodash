@@ -2,8 +2,9 @@
 # TODO: stale after hour of no monitoring
 # TODO: parse response_code with string (like OK, Not Found, etc.)
 # TODO: make it so that this needs to be verified twice
+# TODO: different way to detect down/up, add status :new
 class UptimeMonitor < ApplicationRecord
-  include Widgetable
+  include Alertable, Widgetable
 
   scope :down, -> { where.not(response_code: 200) }
   scope :up, -> { where(response_code: 200) }
