@@ -16,6 +16,10 @@ class UptimeMonitor < ApplicationRecord
     :down
   end
 
+  def warning?
+    response_time > 500
+  end
+
   def alert_message
     # TODO: Better alert message
     "URL could not be reached"

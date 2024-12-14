@@ -11,3 +11,4 @@ class WidgetAlertMailer < ApplicationMailer
   end
 
 end
+

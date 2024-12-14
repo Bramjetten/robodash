@@ -2,7 +2,7 @@
   <div class="text-sm <%= 'text-red-500' if uptime_monitor.down? %>">
     <%= uptime_monitor.response_code %> OK
   </div>
-  <div class="text-sm text-zinc-400 flex items-center">
+  <div class="text-sm text-zinc-400 flex items-center <%= 'text-amber-500' if uptime_monitor.warning? %>">
     <%= uptime_monitor.response_time %>ms
   </div>
 </div>

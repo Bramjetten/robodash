@@ -28,6 +28,15 @@ module Widgetable
     raise NotImplementedError, "#{self.class} must implement #status"
   end
 
+  # Widgets can optionally have a #warning? method
+  # By default, widgets return false
+  # Example: UptimeMonitors return warning? == true if the response time is high
+  #
+  # Warnings don't trigger alerts, but can be shown in the UI
+  def warning?
+    false
+  end
+
   def new?
     status == :new
   end

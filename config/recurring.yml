@@ -1,6 +1,12 @@
 production:
-  periodic_monitor:
-    class: HeartbeatMonitorJob
+  heartbeat_monitors:
+    class: HeartbeatMonitorsJob
     queue: background
     priority: 1
     schedule: every 10 minutes
+  uptime_monitors:
+    class: UptimeMonitorsJob
+    queue: background
+    priority: 1
+    schedule: every 10 minutes
+

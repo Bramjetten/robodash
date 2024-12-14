@@ -2,8 +2,8 @@
 #
 # The widgetable is the thing that actually tracks uptime
 # - Heartbeat
-# - TODO: Counter
-# - TODO: UptimeMonitor
+# - Counter
+# - UptimeMonitor
 class Widget < ApplicationRecord
   belongs_to :dashboard
   belongs_to :widgetable, polymorphic: true
@@ -19,7 +19,7 @@ class Widget < ApplicationRecord
   validates :name, presence: true, uniqueness: {scope: [:dashboard_id, :widgetable_type]}
 
   # Delegate status methods to the widgetable
-  delegate :status, :new?, :up?, :down?, to: :widgetable
+  delegate :status, :new?, :up?, :down?, :warning?, to: :widgetable
 
   def alerted?
     alerted_at.present?
