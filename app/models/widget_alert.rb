@@ -29,7 +29,7 @@ class WidgetAlert
       widget_alert = new(widget)
       widget.transaction do
         widget.touch(:alerted_at)
-        WidgetAlertMailer.alert(widget_alert)
+        WidgetAlertMailer.alert(widget_alert).deliver_later
       end
 
       widget_alert
@@ -39,7 +39,7 @@ class WidgetAlert
       widget_alert = new(widget)
       widget.transaction do
         widget.update(alerted_at: nil)
-        WidgetAlertMailer.clear(widget_alert)
+        WidgetAlertMailer.clear(widget_alert).deliver_later
       end
 
       widget_alert

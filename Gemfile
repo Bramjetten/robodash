@@ -2,14 +2,20 @@ source "https://rubygems.org"
 
 gem "rails", "~> 8.0.0"
 
+# Assets
 gem "propshaft"
-gem "pg", "~> 1.1"
-gem "puma", ">= 5.0"
 gem "importmap-rails"
 gem "turbo-rails"
 gem "stimulus-rails"
 gem "tailwindcss-rails", "~> 3.0"
 
+# Database
+gem "pg", "~> 1.1"
+
+# Server
+gem "puma", ">= 5.0"
+
+# API
 gem "jbuilder"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
