@@ -16,6 +16,7 @@ gem "pg", "~> 1.1"
 
 # Server
 gem "puma", ">= 5.0"
+gem "kamal"
 
 # API
 gem "jbuilder"
