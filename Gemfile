@@ -29,6 +29,9 @@ gem "solid_cache"
 gem "solid_queue"
 gem "solid_cable"
 
+# Mission control for Solid Queue
+gem "mission_control-jobs"
+
 # HTTParty!
 gem 'httparty'
 
