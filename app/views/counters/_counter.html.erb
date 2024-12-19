@@ -1,6 +1,6 @@
 <div class="flex items-start space-x-1.5 pt-1">
   <div class="font-black text-2xl <%= 'text-red-500' if counter.down? %>">
-    <%= counter.count %>
+    <%= number_with_delimiter counter.count, delimiter: "." %>
   </div>
 
   <% if counter.min.present? || counter.max.present? %>
