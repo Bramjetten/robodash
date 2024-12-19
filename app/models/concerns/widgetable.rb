@@ -3,7 +3,7 @@ module Widgetable
 
   included do
     # Destroying the widgetable (like Heartbeat) also destroys the widget
-    has_one :widget, as: :widgetable, dependent: :destroy
+    has_one :widget, as: :widgetable, dependent: :destroy, touch: true
   end
 
   class_methods do

@@ -1,5 +1,7 @@
 <% content_for(:title) { "Robodash: #{@dashboard.name}" } %>
 
+<%= turbo_stream_from @dashboard %>
+
 <div class="p-10 bg-zinc-900/60 min-h-screen">
   <div class="flex items-center justify-between mb-8">
     <h1 class="text-3xl font-bold flex items-center">

@@ -8,6 +8,9 @@ class Widget < ApplicationRecord
   belongs_to :dashboard
   belongs_to :widgetable, polymorphic: true
 
+  # Refresh a dashboard if anything changes
+  broadcasts_refreshes_to :dashboard
+
   # Scopes for different types of widgets
   scope :heartbeats, -> { where(widgetable_type: "Heartbeat") }
 
