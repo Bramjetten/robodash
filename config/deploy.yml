@@ -105,11 +105,10 @@ accessories:
       clear:
         POSTGRES_USER: robodash
         POSTGRES_DB: robodash_production
-        POSTGRES_HOST_AUTH_METHOD: trust
       secret:
         - POSTGRES_PASSWORD
     directories:
-      - data:/rails/storage/postgresql/data
+      - data:/var/lib/postgresql/data
     files:
       - db/production_setup.sql:/docker-entrypoint-initdb.d/setup.sql
 # accessories:

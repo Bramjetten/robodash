@@ -25,7 +25,7 @@ gem "jbuilder"
 # gem "bcrypt", "~> 3.1.7"
 
 # Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
-# gem "solid_cache"
+gem "solid_cache"
 # gem "solid_queue"
 # gem "solid_cable"
 
