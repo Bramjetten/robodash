@@ -1,7 +1,7 @@
 class DashboardsController < ApplicationController
 
   def show
-    @dashboard = Dashboard.find_by!(token: params[:id])
+    @dashboard = Dashboard.find(params[:id])
   end
 
 end
