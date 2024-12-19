@@ -17,7 +17,7 @@ class UptimeMonitor < ApplicationRecord
   end
 
   def warning?
-    response_time > 500
+    response_time.to_i > 500
   end
 
   def alert_message

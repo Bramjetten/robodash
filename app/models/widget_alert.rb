@@ -3,6 +3,7 @@
 # Most important methods of this class:
 # - WidgetAlert.create(widget)
 # - WidgetAlert.destroy(widget)
+# TODO: #destroy should be called #clear instead
 #
 # These class methods return instances of WidgetAlert with 
 # a couple of useful methods like #name and #message.
