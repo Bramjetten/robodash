@@ -2,7 +2,7 @@
 
 <%= turbo_stream_from @dashboard %>
 
-<div class="p-10 bg-zinc-900/60 min-h-screen">
+<div class="p-5 md:p-10 bg-zinc-900/60 min-h-screen">
   <div class="flex items-center justify-between mb-8">
     <h1 class="text-3xl font-bold flex items-center">
       <%= @dashboard.name %>
@@ -38,7 +38,7 @@
     </div>
   </div>
 
-  <div class="bg-zinc-900/50 backdrop-blur grid grid-cols-4 gap-4 rounded-2xl p-4">
+  <div class="bg-zinc-900/50 backdrop-blur grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 rounded-2xl p-4">
     <%= render @dashboard.widgets.order(:name) %>
   </div>
 </div>
