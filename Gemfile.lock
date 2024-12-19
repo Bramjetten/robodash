@@ -282,6 +282,10 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    solid_cache (1.0.6)
+      activejob (>= 7.2)
+      activerecord (>= 7.2)
+      railties (>= 7.2)
     sshkit (1.23.2)
       base64
       net-scp (>= 1.1.2)
@@ -353,6 +357,7 @@ DEPENDENCIES
   rails (~> 8.0.0)
   rubocop-rails-omakase
   selenium-webdriver
+  solid_cache
   stimulus-rails
   tailwindcss-rails (~> 3.0)
   thruster
