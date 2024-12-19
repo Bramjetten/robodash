@@ -1,13 +1,13 @@
 class WidgetAlertMailer < ApplicationMailer
 
-  def alert(widget_alert)
-    @widget_alert = widget_alert
-    mail to: @widget_alert.widget.dashboard.email
+  def alert(widget)
+    @widget_alert = WidgetAlert.new(widget)
+    mail to: @widget.dashboard.email
   end
 
-  def clear(widget_alert)
-    @widget_alert = widget_alert
-    mail to: @widget_alert.widget.dashboard.email
+  def clear(widget)
+    @widget_alert = WidgetAlert.new(widget)
+    mail to: @widget.dashboard.email
   end
 
 end
