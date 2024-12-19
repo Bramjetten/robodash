@@ -36,7 +36,7 @@ class Widget < ApplicationRecord
   end
 
   def clear_alert!
-    WidgetAlert.destroy(self)
+    WidgetAlert.clear(self)
   end
 
   def alerted?

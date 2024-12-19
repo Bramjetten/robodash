@@ -3,7 +3,6 @@
 # Most important methods of this class:
 # - WidgetAlert.create(widget)
 # - WidgetAlert.destroy(widget)
-# TODO: #destroy should be called #clear instead
 #
 # These class methods return instances of WidgetAlert with 
 # a couple of useful methods like #name and #message.
@@ -35,7 +34,7 @@ class WidgetAlert
       new(widget)
     end
 
-    def destroy(widget)
+    def clear(widget)
       widget.transaction do
         widget.update(alerted_at: nil)
         # WidgetAlertMailer.clear(widget).deliver_later
