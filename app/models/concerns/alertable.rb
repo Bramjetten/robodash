@@ -2,8 +2,8 @@ module Alertable
   extend ActiveSupport::Concern
 
   included do
-    after_save :alert!, if: -> { down? && widget.not_alerted? }
-    after_save :clear_alert!, if: -> { up? && widget.alerted? }
+    after_save_commit :alert!, if: -> { down? && widget.not_alerted? }
+    after_save_commit :clear_alert!, if: -> { up? && widget.alerted? }
 
     # Delegate alert methods to widget for easy access
     delegate :alert!, :clear_alert!, to: :widget
