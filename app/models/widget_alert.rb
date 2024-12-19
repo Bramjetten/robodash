@@ -28,7 +28,7 @@ class WidgetAlert
     def create(widget)
       widget.transaction do
         widget.touch(:alerted_at)
-        WidgetAlertMailer.alert(widget).deliver_later
+        # WidgetAlertMailer.alert(widget).deliver_later
       end
 
       widget_alert
@@ -37,7 +37,7 @@ class WidgetAlert
     def destroy(widget)
       widget.transaction do
         widget.update(alerted_at: nil)
-        WidgetAlertMailer.clear(widget).deliver_later
+        # WidgetAlertMailer.clear(widget).deliver_later
       end
 
       widget_alert
