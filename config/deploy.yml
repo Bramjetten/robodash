@@ -39,7 +39,7 @@ env:
   clear:
     # Run the Solid Queue Supervisor inside the web server's Puma process to do jobs.
     # When you start using multiple servers, you should split out job processing to a dedicated machine.
-    SOLID_QUEUE_IN_PUMA: true
+    # SOLID_QUEUE_IN_PUMA: true
 
     # Set number of processes dedicated to Solid Queue (default: 1)
     # JOB_CONCURRENCY: 3
@@ -101,11 +101,12 @@ accessories:
   db:
     image: postgres:15
     host: 134.122.62.197
-    # port: "127.0.0.1:5432:5432"
+    port: "127.0.0.1:5432:5432"
     env:
       clear:
-        POSTGRES_USER: "${POSTGRES_USER}"
-        POSTGRES_DB: "${POSTGRES_DB}"
+        POSTGRES_USER: robodash
+        POSTGRES_DB: robodash_production
+        POSTGRES_HOST_AUTH_METHOD: trust
       secret:
         - POSTGRES_PASSWORD
     directories:
