@@ -31,7 +31,7 @@ class WidgetAlert
         # WidgetAlertMailer.alert(widget).deliver_later
       end
 
-      widget_alert
+      new(widget_alert)
     end
 
     def destroy(widget)
@@ -40,7 +40,7 @@ class WidgetAlert
         # WidgetAlertMailer.clear(widget).deliver_later
       end
 
-      widget_alert
+      new(widget_alert)
     end
   end
 
