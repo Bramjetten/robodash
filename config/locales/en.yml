@@ -5,3 +5,8 @@ en:
   warnings:
     one: 1 warning
     other: "%{count} warnings"
+  widget_alert_mailer:
+    alert:
+      subject: "%{dashboard}: %{widget} is down"
+    clear:
+      subject: "%{dashboard}: %{widget} is up"

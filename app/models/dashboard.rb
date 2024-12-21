@@ -4,6 +4,11 @@ class Dashboard < ApplicationRecord
   # You fetch a dashboard using a secure token
   has_secure_token :token
 
+  # TODO: replace this with notification channels
+  def email
+    "mail@bramjetten.nl"
+  end
+
   # A dashboard is down if any of its widgets are down
   # This is not cached and potentially quite slow
   #
