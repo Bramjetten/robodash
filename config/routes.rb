@@ -4,6 +4,11 @@ Rails.application.routes.draw do
     post "count" => "count#create"
   end
 
+  # Sessions
+  resource :session
+  resources :passwords, param: :token
+
+  # Dashboard!
   resources :dashboards, only: [:show]
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

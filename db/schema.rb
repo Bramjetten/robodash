@@ -10,9 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_09_144508) do
+ActiveRecord::Schema[8.0].define(version: 2024_12_22_210846) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index "lower((name)::text)", name: "index_accounts_on_lower_name", unique: true
+  end
 
   create_table "counters", force: :cascade do |t|
     t.integer "count", default: 0, null: false
@@ -27,6 +34,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_09_144508) do
     t.string "token", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "account_id", null: false
+    t.index ["account_id"], name: "index_dashboards_on_account_id"
     t.index ["token"], name: "index_dashboards_on_token", unique: true
   end
 
@@ -40,12 +49,39 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_09_144508) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "memberships", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id", "user_id"], name: "index_memberships_on_account_id_and_user_id", unique: true
+    t.index ["account_id"], name: "index_memberships_on_account_id"
+    t.index ["user_id"], name: "index_memberships_on_user_id"
+  end
+
+  create_table "sessions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "ip_address"
+    t.string "user_agent"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sessions_on_user_id"
+  end
+
   create_table "uptime_monitors", force: :cascade do |t|
     t.string "url", null: false
     t.integer "response_time"
     t.integer "response_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email_address", null: false
+    t.string "password_digest", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
   create_table "widgets", force: :cascade do |t|
@@ -62,5 +98,9 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_09_144508) do
     t.index ["widgetable_type", "widgetable_id"], name: "index_widgets_on_widgetable_type_and_widgetable_id"
   end
 
+  add_foreign_key "dashboards", "accounts"
+  add_foreign_key "memberships", "accounts"
+  add_foreign_key "memberships", "users"
+  add_foreign_key "sessions", "users"
   add_foreign_key "widgets", "dashboards"
 end
