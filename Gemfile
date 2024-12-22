@@ -32,7 +32,10 @@ gem "solid_cable"
 # Mission control for Solid Queue
 gem "mission_control-jobs"
 
-# HTTParty!
+# For emails!
+gem "postmark-rails"
+
+# HTTParty! for uptime monitoring
 gem 'httparty'
 
 # Reduces boot times through caching; required in config/boot.rb
