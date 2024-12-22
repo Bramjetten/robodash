@@ -3,7 +3,7 @@
 class Heartbeat < ApplicationRecord
   include Alertable, Widgetable
 
-  SCHEDULE_PERIODS = %w[month week day hour minute]
+  SCHEDULE_PERIODS = %w[year month week day hour minute]
 
   # For use in scopes
   PING_EXPECTED_BEFORE_SQL = <<~SQL
