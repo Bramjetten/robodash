@@ -1,6 +1,8 @@
 class Dashboard < ApplicationRecord
   has_many :widgets, dependent: :destroy
 
+  belongs_to :account
+
   # You fetch a dashboard using a secure token
   has_secure_token :token
 
