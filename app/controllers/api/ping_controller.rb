@@ -23,7 +23,7 @@ module API
       # That way it's possible to setup a new heartbeat without using the UI
       # (or update its schedule)
       def heartbeat_params
-        params.permit(:schedule_number, :schedule_period, :grace_period).merge(pinged_at: Time.current)
+        params.expect(:schedule_number, :schedule_period, :grace_period).merge(pinged_at: Time.current)
       end
 
       def find_heartbeat

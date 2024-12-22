@@ -23,7 +23,7 @@ module API
       # That way it's possible to setup a new heartbeat without using the UI
       # (or update its schedule)
       def counter_params
-        params.permit(:count, :min, :max)
+        params.expect(:count, :min, :max)
       end
 
       def find_counter
