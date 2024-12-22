@@ -2,9 +2,10 @@
 <html>
   <head>
     <title><%= content_for(:title) || "Robodash" %></title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
     <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -24,7 +25,7 @@
     <%= turbo_refreshes_with(method: :morph, scroll: :preserve) %>
   </head>
 
-  <body class="bg-zinc-900 text-white font-mono bg-cover bg-center min-h-screen" style="background-image: url('<%= image_url("wallpapers/7.jpg") %>')">
+  <body class="bg-black text-white font-mono bg-cover bg-center min-h-screen" style="background-image: url('<%= image_url("wallpapers/7.jpg") %>')">
     <%= yield %>
   </body>
 </html>
