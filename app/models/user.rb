@@ -6,4 +6,10 @@ class User < ApplicationRecord
   has_many :accounts, through: :memberships
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
+
+  # Get all dashboards that are connected to the accounts of this user (memoized)
+  def dashboards
+    @dashboards ||= Dashboard.joins(:account).where(account: accounts)
+  end
+
 end
