@@ -17,7 +17,7 @@
   <div class="mt-8">
     <% if authenticated? %>
       <% if dashboard = Current.user.dashboards.first %>
-        <%= link_to dashboard, class: "bg-gradient-to-b from-blue-500/80 to-blue-600/80 backdrop-blur-sm hover:to-blue-700 text-white rounded-lg px-3 h-10 flex items-center border border-blue-700/40 ring-[1px] ring-white/10 ring-inset shadow cursor-pointer text-base font-medium" do %>
+        <%= link_to dashboard, class: "bg-gradient-to-b from-blue-500/80 to-blue-600/80 backdrop-blur-sm hover:to-blue-700 text-white rounded-lg px-3 h-10 flex items-center border border-blue-700/40 ring-[1px] ring-white/10 ring-inset shadow-md shadow-blue-500/20 cursor-pointer text-base font-medium" do %>
           <div class="inline-flex items-center">
             Go to:
             <div class="inline-flex items-center ml-2 bg-zinc-900/50 rounded-md px-2 py-1 -mr-1.5 text-sm">
