@@ -53,6 +53,7 @@ end
 group :development do
   gem "web-console"
   gem "letter_opener"
+  gem "hotwire-spark"
 end
 
 group :test do
