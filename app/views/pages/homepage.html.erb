@@ -3,28 +3,44 @@
   <div class="text-xl">Monitor bg jobs and uptime</div>
 
   <div class="mt-8 px-4">
-    <div class="bg-zinc-900/50 backdrop-blur-md rounded-lg px-3 py-2 text-left">
-      <div class="text-zinc-400"># Very easy to setup</div>
-      <div>
-        <span class="text-amber-400">Robodash</span><span class="text-zinc-500">.</span><span class="text-blue-400">api_token</span>
-        <span class="text-teal-400">=</span>
-        <span class="text-green-400">"Your token"</span>
+    <div class="bg-gradient-to-br from-zinc-200/60 from-10% via-30% via-zinc-400/20 to-zinc-400/20 backdrop-blur-sm rounded-xl p-[1px] shadow ">
+      <div class="bg-zinc-900/50 rounded-xl px-3 py-2 text-left">
+        <div class="text-zinc-400"># Very easy to setup</div>
+        <div class="">
+          <span class="text-amber-400">Robodash</span><span class="text-zinc-500">.</span><span class="text-blue-400">api_token</span>
+          <span class="text-teal-400">=</span>
+          <span class="text-green-400">"Your token"</span>
+        </div>
+        <div class="">
+          <span class="text-amber-400">Robodash</span><span class="text-zinc-500">.</span><span class="text-blue-400">ping</span><span class="text-zinc-500">(</span><span class="text-green-400">"A bg job"</span><span class="text-zinc-500">)</span>
+        </div>
       </div>
-      <span class="text-amber-400">Robodash</span><span class="text-zinc-500">.</span><span class="text-blue-400">ping</span><span class="text-zinc-500">(</span><span class="text-green-400">"A bg job"</span><span class="text-zinc-500">)</span>
     </div>
   </div>
 
   <div class="mt-8">
     <% if authenticated? %>
       <% if dashboard = Current.user.dashboards.first %>
-        <%= link_to dashboard, class: "bg-gradient-to-b from-blue-500/80 to-blue-600/80 backdrop-blur-sm hover:to-blue-700 text-white rounded-lg px-3 h-10 flex items-center border border-blue-700/40 ring-[1px] ring-white/10 ring-inset shadow-md shadow-blue-500/20 cursor-pointer text-base font-medium" do %>
-          <div class="inline-flex items-center">
-            Go to:
-            <div class="inline-flex items-center ml-2 bg-zinc-900/50 rounded-md px-2 py-1 -mr-1.5 text-sm">
-              <%= dashboard.name %>
-              dashboard
-            </div>
+        <%= link_to dashboard, class: "flex items-center text-base shadow-xl shadow-cyan-600/20 bg-gradient-to-br from-cyan-200 from-10% via-30% via-cyan-300/90 to-cyan-300/80 p-[1.5px] rounded-full drop-shadow-[0_1.5px_0px_theme(colors.cyan.700)]" do %>
+          <div class="rounded-full bg-gradient-to-b from-cyan-500 to-cyan-600 text-white px-4 h-10 flex items-center shadow-sm font-medium inset-shadow-[0_0_10px_rgba(255,255,255,.4)]">
+            Open
+            dashboard
+
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 ml-2 -mr-1.5 text-white/80">
+              <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm4.28 10.28a.75.75 0 0 0 0-1.06l-3-3a.75.75 0 1 0-1.06 1.06l1.72 1.72H8.25a.75.75 0 0 0 0 1.5h5.69l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3Z" clip-rule="evenodd" />
+            </svg>
           </div>
+        <% end %>
+        <% if false %>
+          <%= link_to dashboard, class: "bg-radial-[at_50%_50%] from-blue-600/80 to-blue-300/80 backdrop-blur-sm hover:to-blue-700 text-white rounded-lg px-3 h-10 flex items-center border border-blue-700/40 ring-[1px] ring-white/10 ring-inset shadow-md shadow-blue-500/20 cursor-pointer text-base font-medium" do %>
+            <div class="inline-flex items-center">
+              Go to:
+              <div class="inline-flex items-center ml-2 bg-zinc-900/50 rounded-md px-2 py-1 -mr-1.5 text-sm">
+                <%= dashboard.name %>
+                dashboard
+              </div>
+            </div>
+          <% end %>
         <% end %>
       <% else %>
         No dashboards available

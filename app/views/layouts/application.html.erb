@@ -18,14 +18,14 @@
     <link rel="apple-touch-icon" href="/icon.png">
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
 
     <%= turbo_refreshes_with(method: :morph, scroll: :preserve) %>
   </head>
 
-  <body class="bg-black text-white font-mono bg-cover bg-center min-h-screen" style="background-image: url('<%= image_url("wallpapers/7.jpg") %>')">
+  <body class="bg-black text-white font-mono bg-cover bg-center min-h-screen selection:bg-zinc-900" style="background-image: url('<%= image_url("wallpapers/3.jpg") %>')">
     <%= yield %>
   </body>
 </html>
