@@ -31,27 +31,18 @@
             </svg>
           </div>
         <% end %>
-        <% if false %>
-          <%= link_to dashboard, class: "bg-radial-[at_50%_50%] from-blue-600/80 to-blue-300/80 backdrop-blur-sm hover:to-blue-700 text-white rounded-lg px-3 h-10 flex items-center border border-blue-700/40 ring-[1px] ring-white/10 ring-inset shadow-md shadow-blue-500/20 cursor-pointer text-base font-medium" do %>
-            <div class="inline-flex items-center">
-              Go to:
-              <div class="inline-flex items-center ml-2 bg-zinc-900/50 rounded-md px-2 py-1 -mr-1.5 text-sm">
-                <%= dashboard.name %>
-                dashboard
-              </div>
-            </div>
-          <% end %>
-        <% end %>
       <% else %>
         No dashboards available
       <% end %>
     <% else %>
-      <%= link_to new_session_path, class: "bg-gradient-to-b from-blue-500/80 to-blue-600/80 backdrop-blur-sm hover:to-blue-700 text-white rounded-lg px-3 h-10 flex items-center border border-blue-700/40 ring-[1px] ring-white/10 ring-inset shadow cursor-pointer text-base font-medium" do %>
-        <div>Login</div>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 ml-1">
-          <path fill-rule="evenodd" d="M17 4.25A2.25 2.25 0 0 0 14.75 2h-5.5A2.25 2.25 0 0 0 7 4.25v2a.75.75 0 0 0 1.5 0v-2a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v11.5a.75.75 0 0 1-.75.75h-5.5a.75.75 0 0 1-.75-.75v-2a.75.75 0 0 0-1.5 0v2A2.25 2.25 0 0 0 9.25 18h5.5A2.25 2.25 0 0 0 17 15.75V4.25Z" clip-rule="evenodd" />
-          <path fill-rule="evenodd" d="M1 10a.75.75 0 0 1 .75-.75h9.546l-1.048-.943a.75.75 0 1 1 1.004-1.114l2.5 2.25a.75.75 0 0 1 0 1.114l-2.5 2.25a.75.75 0 1 1-1.004-1.114l1.048-.943H1.75A.75.75 0 0 1 1 10Z" clip-rule="evenodd" />
-        </svg>
+      <%= link_to new_session_path, class: "flex items-center text-base shadow-xl shadow-cyan-600/20 bg-gradient-to-br from-cyan-200 from-10% via-30% via-cyan-300/90 to-cyan-300/80 p-[1.5px] rounded-full drop-shadow-[0_1.5px_0px_theme(colors.cyan.700)]" do %>
+        <div class="rounded-full bg-gradient-to-b from-cyan-500 to-cyan-600 text-white px-4 h-10 flex items-center shadow-sm font-medium inset-shadow-[0_0_10px_rgba(255,255,255,.4)]">
+          <div>Login</div>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 ml-1 text-white/80">
+            <path fill-rule="evenodd" d="M17 4.25A2.25 2.25 0 0 0 14.75 2h-5.5A2.25 2.25 0 0 0 7 4.25v2a.75.75 0 0 0 1.5 0v-2a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v11.5a.75.75 0 0 1-.75.75h-5.5a.75.75 0 0 1-.75-.75v-2a.75.75 0 0 0-1.5 0v2A2.25 2.25 0 0 0 9.25 18h5.5A2.25 2.25 0 0 0 17 15.75V4.25Z" clip-rule="evenodd" />
+            <path fill-rule="evenodd" d="M1 10a.75.75 0 0 1 .75-.75h9.546l-1.048-.943a.75.75 0 1 1 1.004-1.114l2.5 2.25a.75.75 0 0 1 0 1.114l-2.5 2.25a.75.75 0 1 1-1.004-1.114l1.048-.943H1.75A.75.75 0 0 1 1 10Z" clip-rule="evenodd" />
+          </svg>
+        </div>
       <% end %>
 
     <% end %>
