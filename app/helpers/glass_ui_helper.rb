@@ -14,6 +14,7 @@ module GlassUIHelper
     if style == "primary"
       classes.concat %w[
         bg-gradient-to-br from-cyan-200 from-10% via-30% via-cyan-300/90 to-cyan-300/80
+        hover:from-cyan-100 hover:via-cyan-300/90 hover:to-cyan-300/90
         shadow-lg shadow-black/60
         drop-shadow-[0_1.5px_0px_theme(colors.cyan.700)]
       ]
@@ -26,6 +27,7 @@ module GlassUIHelper
     else
       classes.concat %w[
         bg-gradient-to-br from-zinc-100/60 from-10% via-30% via-zinc-200/30 to-zinc-700/30
+        hover:from-zinc-100/70 hover:via-zinc-200/30 hover:to-zinc-700/30
         shadow-lg shadow-black/40
       ]
     end
@@ -37,11 +39,17 @@ module GlassUIHelper
     classes = %w[flex items-center rounded-full text-white font-medium px-4 h-10]
 
     if style == "primary"
-      classes.concat %w[bg-gradient-to-b from-cyan-500 to-cyan-600]
+      classes.concat %w[
+        bg-gradient-to-b from-cyan-500 to-cyan-600
+        hover:to-cyan-700/90
+      ]
     elsif style == "danger"
       classes.concat %w[bg-gradient-to-b from-red-600 to-red-700]
     else
-      classes.concat %w[bg-zinc-800/50]
+      classes.concat %w[
+        bg-zinc-800/50
+        hover:bg-zinc-800/70
+      ]
     end
 
     classes.join(" ")
