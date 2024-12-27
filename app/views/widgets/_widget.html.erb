@@ -1,9 +1,9 @@
-<%= glass_well do %>
+<%= glass_well(broken: widget.down?) do %>
   <div class="rounded-xl">
     <div class="flex space-x-1.5">
       <div class="mt-1">
         <% if widget.up? %>
-          <div class="size-4 rounded-full bg-zinc-900 border border-[1px] border-zinc-700/80 flex items-center justify-center">
+          <div class="size-4 rounded-full bg-zinc-900/10 border border-[1px] border-zinc-700/80 flex items-center justify-center">
 
             <% if widget.warning? %>
               <div class="size-2.5 rounded-full bg-[#FF8900] drop-shadow-[0_0_8px_#FFA700] opacity-80"></div>
