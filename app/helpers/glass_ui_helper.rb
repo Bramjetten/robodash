@@ -55,6 +55,36 @@ module GlassUIHelper
     classes.join(" ")
   end
 
+  def glass_button_tag(content_or_options = nil, options = nil, &block)
+    if content_or_options.is_a? Hash
+      options = content_or_options
+    else
+      options ||= {}
+    end
+
+    options = { "name" => "button", "type" => "submit" }.merge!(options.stringify_keys)
+
+    # Set glass style
+    glass_style = options.dig("glass_style").to_s
+
+    # Primary style
+    if glass_style == "primary"
+      container_classes = "shadow-xl shadow-cyan-500/30 rounded-full" 
+      inner_shadow = "box-shadow: inset 0 0 10px rgba(255, 255, 255, .4)"
+    elsif glass_style == "danger"
+      container_classes = "shadow-xl shadow-red-500/30 rounded-full" 
+      inner_shadow = "box-shadow: inset 0 0 10px rgba(255, 255, 255, .4)"
+    end
+
+    content_tag(:div, class: container_classes) do
+      content_tag(:button, options.merge(class: glass_link_classes(glass_style))) do
+        content_tag(:div, class: glass_inner_container_classes(glass_style), style: inner_shadow) do
+          block_given? ? yield : (content_or_options || "Button")
+        end
+      end
+    end
+  end
+
   def glass_link_to(name = nil, options = nil, html_options = nil, &block)
     html_options, options, name = options, name, block if block_given?
     options ||= {}
