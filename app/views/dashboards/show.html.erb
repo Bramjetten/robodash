@@ -33,7 +33,12 @@
     </h1>
 
     <div class="flex items-center space-x-4">
-      <%= glass_link_to "Logout", session_path, data: {turbo_method: :delete} %>
+      <%= glass_link_to root_path do %>
+        <%= heroicon("home", style: :solid, class: 'size-6 text-white -mx-2') %>
+      <% end %>
+      <%= glass_link_to session_path, data: {turbo_method: :delete} do %>
+        <%= heroicon("power", style: :mini, class: 'size-6 text-white -mx-2') %>
+      <% end %>
     </div>
   </div>
 

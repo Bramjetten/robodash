@@ -20,14 +20,21 @@
 
   <div class="mt-8">
     <% if authenticated? %>
-      <% if dashboard = Current.user.dashboards.first %>
-        <%= glass_link_to dashboard do %>
-          Open dashboard
-          <%= heroicon("arrow-right-circle", style: :mini, class: "size-6 ml-2 -mr-1.5 text-white/80") %>
+      <div class="flex items-center space-x-3">
+        <%= glass_link_to "https://github.com/bramjetten/robodash", target: :blank do %>
+          Github
+          <%= heroicon("arrow-top-right-on-square", style: :mini, class: "size-5 ml-2 text-white/80") %>
         <% end %>
-      <% else %>
-        No dashboards available
-      <% end %>
+
+        <% if dashboard = Current.user.dashboards.first %>
+          <%= glass_link_to dashboard, glass_style: :primary do %>
+            Open dashboard
+            <%= heroicon("arrow-right-circle", style: :mini, class: "size-6 ml-2 -mr-1.5 text-white/80") %>
+          <% end %>
+        <% else %>
+          No dashboards available
+        <% end %>
+      </div>
     <% else %>
       <div class="flex items-center space-x-3">
         <%= glass_link_to "https://github.com/bramjetten/robodash", target: :blank do %>
