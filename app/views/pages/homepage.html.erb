@@ -3,8 +3,8 @@
   <div class="text-xl">Monitor bg jobs and uptime</div>
 
   <div class="mt-8 px-4">
-    <div class="bg-gradient-to-br from-zinc-200/60 from-10% via-30% via-zinc-400/20 to-zinc-400/20 backdrop-blur-sm rounded-[14px] p-[1.5px] shadow-lg shadow-black/30">
-      <div class="bg-zinc-900/50 rounded-[13px] px-3 py-2 text-left">
+    <%= glass_well do %>
+      <div class="text-left">
         <div class="text-zinc-400"># Very easy to setup</div>
         <div class="">
           <span class="text-amber-400">Robodash</span><span class="text-zinc-500">.</span><span class="text-blue-400">api_token</span>
@@ -15,7 +15,7 @@
           <span class="text-amber-400">Robodash</span><span class="text-zinc-500">.</span><span class="text-blue-400">ping</span><span class="text-zinc-500">(</span><span class="text-green-400">"A bg job"</span><span class="text-zinc-500">)</span>
         </div>
       </div>
-    </div>
+    <% end %>
   </div>
 
   <div class="mt-8">
