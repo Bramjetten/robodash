@@ -37,8 +37,10 @@
     </div>
   </div>
 
-  <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-start">
-    <%= render @dashboard.widgets.order(:name) %>
-  </div>
+  <%= glass_well do %>
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-start">
+      <%= render @dashboard.widgets.order(:name) %>
+    </div>
+  <% end %>
 </div>
 
