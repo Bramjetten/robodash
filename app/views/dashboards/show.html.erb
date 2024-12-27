@@ -67,8 +67,10 @@
     </div>
 
     <div class="flex items-center space-x-4">
-      <%= glass_link_to '/' do %>
-        <%= heroicon("cog-8-tooth", style: :mini, class: 'size-6 text-white -mx-2') %>
+      <%= glass_button_tag type: :button, data: {controller: "clipboard", action: "clipboard#copy", clipboard_content: @dashboard.token} do %>
+        <%= heroicon("key", style: :mini, class: 'size-5 text-zinc-200 -ml-1.5 mr-1.5') %>
+        <span class="text-sm text-zinc-300"><%= @dashboard.token.truncate(12) %></span>
+        <%= heroicon("document-duplicate", style: :mini, class: 'size-5 text-zinc-200 ml-1') %>
       <% end %>
       <%= glass_link_to session_path, data: {turbo_method: :delete} do %>
         <%= heroicon("power", style: :mini, class: 'size-6 text-white -mx-2') %>
