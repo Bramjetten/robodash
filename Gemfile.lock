@@ -355,11 +355,11 @@ GEM
     tailwindcss-rails (3.0.0)
       railties (>= 7.0.0)
       tailwindcss-ruby
-    tailwindcss-ruby (4.0.0.beta.8)
-    tailwindcss-ruby (4.0.0.beta.8-aarch64-linux)
-    tailwindcss-ruby (4.0.0.beta.8-arm64-darwin)
-    tailwindcss-ruby (4.0.0.beta.8-x86_64-darwin)
-    tailwindcss-ruby (4.0.0.beta.8-x86_64-linux)
+    tailwindcss-ruby (4.0.0.beta.6)
+    tailwindcss-ruby (4.0.0.beta.6-aarch64-linux)
+    tailwindcss-ruby (4.0.0.beta.6-arm64-darwin)
+    tailwindcss-ruby (4.0.0.beta.6-x86_64-darwin)
+    tailwindcss-ruby (4.0.0.beta.6-x86_64-linux)
     thor (1.3.2)
     thruster (0.1.9)
     thruster (0.1.9-aarch64-linux)
@@ -423,7 +423,7 @@ DEPENDENCIES
   solid_queue
   stimulus-rails
   tailwindcss-rails (~> 3.0)
-  tailwindcss-ruby (= 4.0.0.beta.8)
+  tailwindcss-ruby (= 4.0.0.beta.6)
   thruster
   turbo-rails
   web-console

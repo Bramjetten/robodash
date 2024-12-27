@@ -10,7 +10,7 @@ gem "importmap-rails"
 gem "turbo-rails"
 gem "stimulus-rails"
 gem "tailwindcss-rails", "~> 3.0"
-gem "tailwindcss-ruby", "4.0.0.beta.7"
+gem "tailwindcss-ruby", "4.0.0.beta.6"
 
 # Database
 gem "pg", "~> 1.1"
