@@ -1,7 +1,7 @@
 module GlassUIHelper
 
   def glass_well(broken: false)
-    content_tag(:div, class: "bg-gradient-to-br from-zinc-200/40 from-10% via-30% via-zinc-400/20 to-zinc-400/20 backdrop-blur-sm rounded-[14px] p-[1.5px] shadow-lg shadow-black/30 relative overflow-hidden") do
+    content_tag(:div, class: "bg-gradient-to-br from-zinc-200/50 from-10% via-30% via-zinc-400/20 to-zinc-400/20 backdrop-blur-sm rounded-[14px] p-[1.5px] shadow-lg shadow-black/30 relative overflow-hidden") do
       content_tag(:div, class: "bg-zinc-900/50 rounded-[13px] px-3 py-2 bg-cover bg-no-repeat bg-right", style: ("background-image: url(#{image_url('broken-glass.webp')})" if broken)) do
         yield
       end
