@@ -13,7 +13,7 @@
         <%= glass_well do %>
           <div class="text-sm text-zinc-400 mb-1">Switch dashboard:</div>
           <div class="-mx-3 divide-y divide-zinc-700/50">
-            <% Dashboard.all.each do |dashboard| %>
+            <% Current.user.dashboards.order(:name).each do |dashboard| %>
               <%= link_to dashboard, class: "py-1.5 px-3 flex items-center #{dashboard == @dashboard ? 'bg-zinc-900' : 'hover:bg-zinc-800'}" do %>
                 <% if dashboard.down? %>
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-4 text-[#f10000] drop-shadow-[0_2px_4px_rgba(255,0,0,0.5)] mr-2">
@@ -72,6 +72,11 @@
         <span class="text-sm text-zinc-300"><%= @dashboard.token.truncate(12) %></span>
         <%= heroicon("document-duplicate", style: :mini, class: 'size-5 text-zinc-200 ml-1') %>
       <% end %>
+
+      <%= glass_link_to '/' do %>
+        <%= heroicon("cog-8-tooth", style: :mini, class: 'size-6 text-white -mx-2') %>
+      <% end %>
+
       <%= glass_link_to session_path, data: {turbo_method: :delete} do %>
         <%= heroicon("power", style: :mini, class: 'size-6 text-white -mx-2') %>
       <% end %>
@@ -80,7 +85,11 @@
 
   <%= glass_well do %>
     <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-start">
-      <%= render @dashboard.widgets.order(:name) %>
+      <% if @dashboard.widgets.any? %>
+        <%= render @dashboard.widgets.order(:name) %>
+      <% else %>
+        <div class="p-5 text-zinc-400 text-center col-span-4">Add something to monitor using the API</div>
+      <% end %>
     </div>
   <% end %>
 </div>
