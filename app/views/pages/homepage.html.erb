@@ -3,7 +3,7 @@
   <div class="text-xl">Monitor bg jobs and uptime</div>
 
   <div class="mt-8 px-4">
-    <div class="bg-gradient-to-br from-zinc-200/60 from-10% via-30% via-zinc-400/20 to-zinc-400/20 backdrop-blur-sm rounded-[14px] p-[1px] shadow -sm">
+    <div class="bg-gradient-to-br from-zinc-200/60 from-10% via-30% via-zinc-400/20 to-zinc-400/20 backdrop-blur-sm rounded-[14px] p-[1.5px] shadow-lg shadow-black/30">
       <div class="bg-zinc-900/50 rounded-[13px] px-3 py-2 text-left">
         <div class="text-zinc-400"># Very easy to setup</div>
         <div class="">
@@ -21,43 +21,24 @@
   <div class="mt-8">
     <% if authenticated? %>
       <% if dashboard = Current.user.dashboards.first %>
-        <%= link_to dashboard, class: "flex items-center text-base shadow-xl shadow-cyan-600/20 bg-gradient-to-br from-cyan-200 from-10% via-30% via-cyan-300/90 to-cyan-300/80 p-[1.5px] rounded-full drop-shadow-[0_1.5px_0px_theme(colors.cyan.700)]" do %>
-          <div class="rounded-full bg-gradient-to-b from-cyan-500 to-cyan-600 text-white px-4 h-10 flex items-center shadow-sm font-medium" style="box-shadow: inset 0 0 10px rgba(255, 255, 255, .4)">
-            Open
-            dashboard
-
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 ml-2 -mr-1.5 text-white/80">
-              <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm4.28 10.28a.75.75 0 0 0 0-1.06l-3-3a.75.75 0 1 0-1.06 1.06l1.72 1.72H8.25a.75.75 0 0 0 0 1.5h5.69l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3Z" clip-rule="evenodd" />
-            </svg>
-          </div>
+        <%= glass_link_to dashboard do %>
+          Open dashboard
+          <%= heroicon("arrow-right-circle", style: :mini, class: "size-6 ml-2 -mr-1.5 text-white/80") %>
         <% end %>
       <% else %>
         No dashboards available
       <% end %>
     <% else %>
       <div class="flex items-center space-x-3">
-        <%= link_to "https://github.com/bramjetten/robodash", class: "flex items-center text-base shadow-xl backdrop-blur-sm bg-gradient-to-br from-zinc-100/60 from-10% via-30% via-zinc-200/30 to-zinc-700/30 p-[1.5px] rounded-full shadow-lg shadow-black/40", target: :blank do %>
-          <div class="rounded-full bg-zinc-800/50 text-white px-4 h-10 flex items-center shadow-sm font-medium">
-            Github
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 ml-2 text-white/80">
-              <path fill-rule="evenodd" d="M4.25 5.5a.75.75 0 0 0-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 0 0 .75-.75v-4a.75.75 0 0 1 1.5 0v4A2.25 2.25 0 0 1 12.75 17h-8.5A2.25 2.25 0 0 1 2 14.75v-8.5A2.25 2.25 0 0 1 4.25 4h5a.75.75 0 0 1 0 1.5h-5Z" clip-rule="evenodd" />
-              <path fill-rule="evenodd" d="M6.194 12.753a.75.75 0 0 0 1.06.053L16.5 4.44v2.81a.75.75 0 0 0 1.5 0v-4.5a.75.75 0 0 0-.75-.75h-4.5a.75.75 0 0 0 0 1.5h2.553l-9.056 8.194a.75.75 0 0 0-.053 1.06Z" clip-rule="evenodd" />
-            </svg>
-
-          </div>
+        <%= glass_link_to "https://github.com/bramjetten/robodash", target: :blank do %>
+          Github
+          <%= heroicon("arrow-top-right-on-square", style: :mini, class: "size-5 ml-2 text-white/80") %>
         <% end %>
 
-        <div class="shadow-xl shadow-cyan-500/30 rounded-full">
-          <%= link_to new_session_path, class: "flex items-center text-base shadow-lg shadow-black/60 bg-gradient-to-br from-cyan-200 from-10% via-30% via-cyan-300/90 to-cyan-300/80 p-[1.5px] rounded-full drop-shadow-[0_1.5px_0px_theme(colors.cyan.700)]" do %>
-            <div class="rounded-full bg-gradient-to-b from-cyan-500 to-cyan-600 text-white px-4 h-10 flex items-center font-medium" style="box-shadow: inset 0 0 10px rgba(255, 255, 255, .4)">
-              <div>Login</div>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 ml-1.5 text-white/80 -mr-0.5">
-                <path fill-rule="evenodd" d="M17 4.25A2.25 2.25 0 0 0 14.75 2h-5.5A2.25 2.25 0 0 0 7 4.25v2a.75.75 0 0 0 1.5 0v-2a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v11.5a.75.75 0 0 1-.75.75h-5.5a.75.75 0 0 1-.75-.75v-2a.75.75 0 0 0-1.5 0v2A2.25 2.25 0 0 0 9.25 18h5.5A2.25 2.25 0 0 0 17 15.75V4.25Z" clip-rule="evenodd" />
-                <path fill-rule="evenodd" d="M1 10a.75.75 0 0 1 .75-.75h9.546l-1.048-.943a.75.75 0 1 1 1.004-1.114l2.5 2.25a.75.75 0 0 1 0 1.114l-2.5 2.25a.75.75 0 1 1-1.004-1.114l1.048-.943H1.75A.75.75 0 0 1 1 10Z" clip-rule="evenodd" />
-              </svg>
-            </div>
-          <% end %>
-        </div>
+        <%= glass_link_to new_session_path, glass_style: :primary do %>
+          Login
+          <%= heroicon("arrow-right-end-on-rectangle", style: :mini, class: "size-5 ml-1.5 text-white/80 -mr-0.5") %>
+        <% end %>
       </div>
 
     <% end %>
