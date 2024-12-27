@@ -4,37 +4,38 @@
 
 <div class="p-5 md:p-10">
   <div class="flex items-center justify-between mb-8">
-    <h1 class="text-3xl font-bold flex items-center">
-      <%= @dashboard.name %>
-
-      <% if issue_count > 0 %>
-        <div class="flex items-center text-base text-red-500">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-6 ml-4 mr-2 text-[#f10000] drop-shadow-[0_2px_4px_rgba(255,0,0,0.5)]">
-            <path d="M11.983 1.907a.75.75 0 0 0-1.292-.657l-8.5 9.5A.75.75 0 0 0 2.75 12h6.572l-1.305 6.093a.75.75 0 0 0 1.292.657l8.5-9.5A.75.75 0 0 0 17.25 8h-6.572l1.305-6.093Z" />
-          </svg>
-          <%=t "issues", count: issue_count %>
-        </div>
+    <div class="flex items-center space-x-3">
+      <%= glass_link_to '#' do %>
+        <%= heroicon("arrows-right-left", style: :mini, class: 'size-6 text-white -mx-2') %>
       <% end %>
 
-      <% if warning_count > 0 %>
-        <div class="flex items-center text-base text-amber-500">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-6 ml-4 mr-2 text-amber-500 drop-shadow-[0_2px_4px_rgba(255,137,0,0.5)]">
-            <path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495ZM10 5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 10 5Zm0 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clip-rule="evenodd" />
-          </svg>
+      <h1 class="text-3xl font-bold flex items-center">
+        <%= @dashboard.name %>
 
-          <%=t "warnings", count: warning_count %>
-        </div>
-      <% end %>
+        <% if issue_count > 0 %>
+          <div class="flex items-center text-base text-red-500">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-6 ml-4 mr-2 text-[#f10000] drop-shadow-[0_2px_4px_rgba(255,0,0,0.5)]">
+              <path d="M11.983 1.907a.75.75 0 0 0-1.292-.657l-8.5 9.5A.75.75 0 0 0 2.75 12h6.572l-1.305 6.093a.75.75 0 0 0 1.292.657l8.5-9.5A.75.75 0 0 0 17.25 8h-6.572l1.305-6.093Z" />
+            </svg>
+            <%=t "issues", count: issue_count %>
+          </div>
+        <% end %>
 
-      <div class="text-zinc-300 text-xs ml-4 font-normal">
-        <%= @dashboard.token %>
-      </div>
+        <% if warning_count > 0 %>
+          <div class="flex items-center text-base text-amber-500">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-6 ml-4 mr-2 text-amber-500 drop-shadow-[0_2px_4px_rgba(255,137,0,0.5)]">
+              <path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495ZM10 5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 10 5Zm0 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clip-rule="evenodd" />
+            </svg>
 
-    </h1>
+            <%=t "warnings", count: warning_count %>
+          </div>
+        <% end %>
+      </h1>
+    </div>
 
     <div class="flex items-center space-x-4">
-      <%= glass_link_to root_path do %>
-        <%= heroicon("home", style: :solid, class: 'size-6 text-white -mx-2') %>
+      <%= glass_link_to '/' do %>
+        <%= heroicon("cog-8-tooth", style: :mini, class: 'size-6 text-white -mx-2') %>
       <% end %>
       <%= glass_link_to session_path, data: {turbo_method: :delete} do %>
         <%= heroicon("power", style: :mini, class: 'size-6 text-white -mx-2') %>
