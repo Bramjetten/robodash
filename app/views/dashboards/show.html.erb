@@ -73,7 +73,7 @@
         <%= heroicon("document-duplicate", style: :mini, class: 'size-5 text-zinc-200 ml-1') %>
       <% end %>
 
-      <%= glass_link_to '/' do %>
+      <%= glass_link_to edit_dashboard_path(@dashboard), data: {turbo_frame: "modal"} do %>
         <%= heroicon("cog-8-tooth", style: :mini, class: 'size-6 text-white -mx-2') %>
       <% end %>
 
@@ -83,14 +83,12 @@
     </div>
   </div>
 
-  <%= glass_well do %>
+  <% if @dashboard.widgets.any? %>
     <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-start">
-      <% if @dashboard.widgets.any? %>
-        <%= render @dashboard.widgets.order(:name) %>
-      <% else %>
-        <div class="p-5 text-zinc-400 text-center col-span-4">Add something to monitor using the API</div>
-      <% end %>
+      <%= render @dashboard.widgets.order(:name) %>
     </div>
+  <% else %>
+    <div class="p-5 text-zinc-400 text-center col-span-4 rounded-full bg-zinc-700/40 backdrop-blur-md">Add something to monitor using the API</div>
   <% end %>
 </div>
 

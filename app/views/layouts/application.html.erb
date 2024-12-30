@@ -27,5 +27,8 @@
 
   <body class="bg-black text-white font-mono bg-cover bg-center min-h-screen selection:bg-zinc-900 selection:text-white" style="background-image: url('<%= image_url("wallpapers/3.jpg") %>')">
     <%= yield %>
+
+    <!-- Modals are rendered at the bottom -->
+    <%= turbo_frame_tag :modal %>
   </body>
 </html>

@@ -1,0 +1,43 @@
+<%= turbo_frame_tag :modal do %>
+  <div data-controller="modal" class="flex items-center justify-center">
+    <button type="button" class="fixed inset-0 bg-zinc-900/30 cursor-default" data-action="click->modal#close"></button>
+
+    <div class="relative max-w-lg w-full bg-black/90 rounded-[14px] shadow-2xl shadow-black">
+      <%= glass_well do %>
+        <%= form_with model: @dashboard, data: {turbo_frame: "_top"} do |f| %>
+          <div class="p-2 py-3">
+            <div class="space-y-3">
+              <div class="flex items-center space-x-3">
+                <%= f.text_field :name, placeholder: "Name", class: 'h-11 rounded-lg border-zinc-500 bg-zinc-900 rounded-lg w-full focus:ring-cyan-500 focus:border-cyan-500', autofocus: true, autocomplete: "off", required: true %>
+                <%= glass_button_tag type: :submit, glass_style: :primary do %>
+                  <%= heroicon("check", style: :micro, class: "size-6 -mx-2") %>
+                <% end %>
+              </div>
+
+              <% if false %>
+                <div class="flex items-center space-x-3 relative">
+                  <%= f.text_field :token, placeholder: "API Token", disabled: true, class: 'bg-zinc-900 text-zinc-400 rounded-lg w-full pl-9 border border-zinc-400', autocomplete: "off" %>
+                  <%= heroicon("key", style: :mini, class: "size-5 absolute left-0 text-zinc-300") %>
+                  <%= glass_button_tag type: :button do %>
+                    <%= heroicon("arrow-path", style: :mini, class: "size-6 -mx-2") %>
+                  <% end %>
+                </div>
+              <% end %>
+              <div class="leading-normal text-zinc-400 text-sm">
+                <div>This dashboard belongs to the <span class="text-white font-semibold"><%= @dashboard.account.name %></span> account.</div>
+                <ul>
+                  <% @dashboard.account.users.each do |user| %>
+                    <li>- <%= user.email_address %></li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+
+            <div class="flex items-center space-x-3 justify-end">
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
