@@ -83,11 +83,11 @@
         <div class="mt-3 text-white bg-black/80 rounded-[14px] p-0 m-0 w-64 shadow-2xl shadow-black" popover id="wallpaper-switch" style="position-anchor: --wallpaper-switch; position-area: bottom span-left">
           <%= glass_well do %>
             <div class="grid grid-cols-1 gap-2 py-1">
-              <% 6.times do |i| %>
+              <% 5.times do |i| %>
                 <%= form_with url: wallpaper_path do |f| %>
                   <%= f.hidden_field :wallpaper, value: i + 1 %>
                   <button type="submit" class="cursor-pointer hover:scale-105 transition-transform">
-                    <%= image_tag "wallpapers/#{i+1}.jpg", class: "object-cover aspect-32/9 rounded-lg" %>
+                    <%= image_tag "wallpapers/#{i+1}.webp", class: "object-cover aspect-32/9 rounded-lg" %>
                   </button>
                 <% end %>
               <% end %>

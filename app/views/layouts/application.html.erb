@@ -24,7 +24,7 @@
     <%= turbo_refreshes_with(method: :morph, scroll: :preserve) %>
   </head>
 
-  <body class="bg-black text-white font-mono bg-cover bg-center min-h-screen selection:bg-zinc-900 selection:text-white" style="background-image: url('<%= image_url("wallpapers/#{current_wallpaper}.jpg") %>')">
+  <body class="bg-black text-white font-mono bg-cover bg-center min-h-screen selection:bg-zinc-900 selection:text-white" style="background-image: url('<%= image_url("wallpapers/#{current_wallpaper}.webp") %>')">
     <%= yield %>
 
     <!-- Modals are rendered at the bottom -->
