@@ -84,7 +84,12 @@
           <%= glass_well do %>
             <div class="grid grid-cols-1 gap-2 py-1">
               <% 6.times do |i| %>
-                <%= image_tag "wallpapers/#{i+1}.jpg", class: "object-cover aspect-32/9 rounded-lg" %>
+                <%= form_with url: wallpaper_path do |f| %>
+                  <%= f.hidden_field :wallpaper, value: i + 1 %>
+                  <button type="submit" class="cursor-pointer hover:scale-105 transition-transform">
+                    <%= image_tag "wallpapers/#{i+1}.jpg", class: "object-cover aspect-32/9 rounded-lg" %>
+                  </button>
+                <% end %>
               <% end %>
             </div>
           <% end %>

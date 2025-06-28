@@ -9,7 +9,7 @@ module GlassUIHelper
   end
 
   def glass_link_classes(style = "default")
-    classes = %w[flex items-center backdrop-blur-sm rounded-full text-base p-[1.5px]]
+    classes = %w[flex items-center backdrop-blur-sm rounded-full text-base p-[1.5px] cursor-pointer]
 
     if style == "primary"
       classes.concat %w[
