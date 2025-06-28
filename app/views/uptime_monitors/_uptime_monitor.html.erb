@@ -4,5 +4,7 @@
   </div>
   <div class="text-sm text-zinc-400 flex items-center <%= 'text-amber-500' if uptime_monitor.warning? %>">
     <%= uptime_monitor.response_time %>ms
+
+    <span class="text-xs ml-1 text-zinc-500">(<%=l uptime_monitor.updated_at, format: "%H:%M" %>)</span>
   </div>
 </div>

@@ -8,5 +8,5 @@ production:
     class: UptimeMonitorsJob
     queue: background
     priority: 1
-    schedule: every 10 minutes
+    schedule: every minute
 
