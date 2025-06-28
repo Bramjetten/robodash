@@ -106,10 +106,10 @@
     </div>
   </div>
 
-  <% if @dashboard.widgets.any? %>
+  <% if @widgets.any? %>
     <div class="bg-zinc-900 rounded-2xl p-4">
       <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-start">
-        <%= render @dashboard.widgets.order(:name) %>
+        <%= render @widgets %>
       </div>
     </div>
   <% else %>

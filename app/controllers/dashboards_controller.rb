@@ -2,6 +2,7 @@ class DashboardsController < ApplicationController
   before_action :set_dashboard
 
   def show
+    @widgets = @dashboard.widgets.order(:name)
   end
 
   def edit
