@@ -50,10 +50,6 @@ env:
     # Match this to any external database server to configure Active Record correctly
     # Use robodash-db for a db accessory server on same machine via local kamal docker network.
     # DB_HOST: 192.168.0.2
-    DB_HOST: robodash-db 
-    POSTGRES_USER: robodash
-    POSTGRES_DB: robodash_production
-    DB_PORT: 5432
 
     # Log everything from Rails
     # RAILS_LOG_LEVEL: debug
@@ -96,21 +92,21 @@ builder:
 #   user: app
 
 # Use accessory services (secrets come from .kamal/secrets).
-accessories:
-  db:
-    image: postgres:15
-    host: 134.122.62.197
-    port: "127.0.0.1:5432:5432"
-    env:
-      clear:
-        POSTGRES_USER: robodash
-        POSTGRES_DB: robodash_production
-      secret:
-        - POSTGRES_PASSWORD
-    directories:
-      - data:/var/lib/postgresql/data
-    files:
-      - db/production_setup.sql:/docker-entrypoint-initdb.d/setup.sql
+# accessories:
+#   db:
+#     image: postgres:15
+#     host: 134.122.62.197
+#     port: "127.0.0.1:5432:5432"
+#     env:
+#       clear:
+#         POSTGRES_USER: robodash
+#         POSTGRES_DB: robodash_production
+#       secret:
+#         - POSTGRES_PASSWORD
+#     directories:
+#       - data:/var/lib/postgresql/data
+#     files:
+#       - db/production_setup.sql:/docker-entrypoint-initdb.d/setup.sql
 # accessories:
 #   db:
 #     image: mysql:8.0

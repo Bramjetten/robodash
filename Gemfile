@@ -13,7 +13,7 @@ gem "tailwindcss-rails", "~> 3.0"
 gem "tailwindcss-ruby", "~> 3.4"
 
 # Database
-gem "pg", "~> 1.1"
+gem "sqlite3", ">= 2.1"
 
 # Server
 gem "puma", ">= 5.0"

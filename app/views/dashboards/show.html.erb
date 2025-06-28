@@ -84,8 +84,10 @@
   </div>
 
   <% if @dashboard.widgets.any? %>
-    <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-start">
-      <%= render @dashboard.widgets.order(:name) %>
+    <div class="bg-zinc-900 rounded-2xl p-4">
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-start">
+        <%= render @dashboard.widgets.order(:name) %>
+      </div>
     </div>
   <% else %>
     <div class="p-5 text-zinc-400 text-center col-span-4 rounded-full bg-zinc-700/40 backdrop-blur-md">Add something to monitor using the API</div>

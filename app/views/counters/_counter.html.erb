@@ -1,5 +1,5 @@
 <div class="-mt-1">
-  <div class="font-black text-2xl <%= 'text-red-500' if counter.down? %>">
+  <div class="font-black text-2xl <%= counter.down? ? 'text-red-500' : 'text-white' %>">
     <%= number_with_delimiter counter.count %>
   </div>
 
