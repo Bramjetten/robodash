@@ -1,3 +1,7 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/forms";
 
+@theme {
+  --font-mono: "TX-02", "ui-monospace";
+}
+
