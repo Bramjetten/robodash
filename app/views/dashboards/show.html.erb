@@ -34,9 +34,11 @@
               <% end %>
             <% end %>
 
-            <%= link_to '#', class: "hover:bg-zinc-800 text-zinc-500 flex items-center py-1.5 px-3 -mb-2 rounded-b-[14px]" do %>
-              <%= heroicon("plus", style: :micro, class: 'size-4 mr-2 text-zinc-500 ml-0.25 -mr-0.25') %>
-              New dashboard
+            <% if false %>
+              <%= link_to '#', class: "hover:bg-zinc-800 text-zinc-500 flex items-center py-1.5 px-3 -mb-2 rounded-b-[14px]" do %>
+                <%= heroicon("plus", style: :micro, class: 'size-4 mr-2 text-zinc-500 ml-0.25 -mr-0.25') %>
+                New dashboard
+              <% end %>
             <% end %>
           </div>
         <% end %>
@@ -72,6 +74,22 @@
         <span class="text-sm text-zinc-300"><%= @dashboard.token.truncate(12) %></span>
         <%= heroicon("document-duplicate", style: :mini, class: 'size-5 text-zinc-200 ml-1') %>
       <% end %>
+
+      <div>
+        <%= glass_button_tag type: :button, popovertarget: "wallpaper-switch", style: "anchor-name: --wallpaper-switch" do %>
+          <%= heroicon("photo", style: :mini, class: 'size-6 text-white -mx-2') %>
+        <% end %>
+
+        <div class="mt-3 text-white bg-black/80 rounded-[14px] p-0 m-0 w-64 shadow-2xl shadow-black" popover id="wallpaper-switch" style="position-anchor: --wallpaper-switch; position-area: bottom span-left">
+          <%= glass_well do %>
+            <div class="grid grid-cols-1 gap-2 py-1">
+              <% 6.times do |i| %>
+                <%= image_tag "wallpapers/#{i+1}.jpg", class: "object-cover aspect-32/9 rounded-lg" %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
 
       <%= glass_link_to edit_dashboard_path(@dashboard), data: {turbo_frame: "modal"} do %>
         <%= heroicon("cog-8-tooth", style: :mini, class: 'size-6 text-white -mx-2') %>
