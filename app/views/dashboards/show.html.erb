@@ -6,12 +6,40 @@
   <div class="flex items-center justify-between mb-8">
     <div class="flex items-center space-x-3">
       <%= glass_button_tag type: :button, popovertarget: "dashboard-switch" do %>
-        <%= heroicon("arrows-right-left", style: :mini, class: 'size-6 text-white -mx-2') %>
+        <%= heroicon("bars-3", style: :mini, class: 'size-6 text-white -mx-2') %>
       <% end %>
 
       <div class="text-white bg-black/80 rounded-[14px] p-0 m-0 top-24 left-5 w-64 shadow-2xl shadow-black" popover id="dashboard-switch">
         <%= glass_well do %>
-          <div class="text-sm text-zinc-400 mb-1">Switch dashboard:</div>
+          <div class="-mx-3 divide-y divide-zinc-700/50">
+            <%= link_to root_url, class: "py-1.5 px-3 flex items-center hover:bg-zinc-800 text-sm" do %>
+              <%= heroicon("home", style: :solid, class: 'size-4 text-white mr-2') %>
+              Home
+            <% end %>
+            <div class="py-1.5 px-3 flex items-center text-sm cursor-default text-zinc-500">
+              <%= heroicon("book-open", style: :solid, class: 'size-4 mr-2') %>
+              <div class="flex-1">Documentation</div>
+              wip
+            </div>
+            <div class="py-1.5 px-3 flex items-center text-sm cursor-default text-zinc-500">
+              <%= heroicon("users", style: :solid, class: 'size-4 mr-2') %>
+              <div class="flex-1">Account</div>
+              wip
+            </div>
+            <%= link_to gem_url, class: "py-1.5 px-3 flex items-center hover:bg-zinc-800 text-sm group", target: :blank do %>
+              <svg viewBox="0 0 100 100" class="size-3.5 ml-0.25 mr-2.25 group-hover:text-red-500" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                <path d="M48.6582924,96.1623174 L0.472662785,39.1647593 C-0.121452015,38.4619959 -0.159345587,37.4445295 0.380849751,36.699521 L20.3780861,9.12040239 C20.6765111,8.70883071 21.1204689,8.42634978 21.6197077,8.33038495 L49.1629705,3.03595601 C49.3934881,2.99164538 49.6300066,2.9882617 49.8616974,3.02595987 L78.3181435,7.65607741 C78.8410521,7.74115931 79.30884,8.0302376 79.6188319,8.45986224 L99.9955684,36.7004267 C100.533013,37.4452826 100.494021,38.460456 99.9010274,39.1618937 L51.7129756,96.1623174 C50.999859,97.0058449 49.7379497,97.1115638 48.8944223,96.3984473 C48.8092674,96.3264575 48.7302822,96.2474723 48.6582924,96.1623174 Z"></path>
+              </svg>
+              <div class="flex-1">Ruby gem</div>
+              <%= heroicon("arrow-top-right-on-square", style: :mini, class: "size-4 text-zinc-500") %>
+            <% end %>
+            <%= link_to github_url, class: "py-1.5 px-3 flex items-center hover:bg-zinc-800 text-sm", target: :blank do %>
+              <%= heroicon("code-bracket", style: :mini, class: "size-4 mr-2 text-white") %>
+              <div class="flex-1">GitHub</div>
+              <%= heroicon("arrow-top-right-on-square", style: :mini, class: "size-4 text-zinc-500") %>
+            <% end %>
+          </div>
+          <div class="text-sm text-zinc-400 mb-1 mt-5">Dashboards</div>
           <div class="-mx-3 divide-y divide-zinc-700/50">
             <% Current.user.dashboards.order(:name).each do |dashboard| %>
               <%= link_to dashboard, class: "py-1.5 px-3 flex items-center #{dashboard == @dashboard ? 'bg-zinc-900' : 'hover:bg-zinc-800'}" do %>
