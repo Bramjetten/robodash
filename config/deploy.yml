@@ -19,7 +19,7 @@ servers:
 # Note: If using Cloudflare, set encryption mode in SSL/TLS setting to "Full" to enable CF-to-app encryption.
 proxy:
   ssl: true
-  host: beta.robodash.app
+  host: robodash.app
 
 # Credentials for your image host.
 registry:
