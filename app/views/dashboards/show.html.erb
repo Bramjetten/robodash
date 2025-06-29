@@ -62,12 +62,11 @@
               <% end %>
             <% end %>
 
-            <% if false %>
-              <%= link_to '#', class: "hover:bg-zinc-800 text-zinc-500 flex items-center py-1.5 px-3 -mb-2 rounded-b-[14px]" do %>
-                <%= heroicon("plus", style: :micro, class: 'size-4 mr-2 text-zinc-500 ml-0.25 -mr-0.25') %>
-                New dashboard
-              <% end %>
-            <% end %>
+            <div class="text-zinc-500 text-sm flex items-center py-1.5 px-3 -mb-2 rounded-b-[14px] cursor-default">
+              <%= heroicon("plus", style: :micro, class: 'size-4 mr-2 text-zinc-500') %>
+              <div class="flex-1">New dashboard</div>
+              wip
+            </div>
           </div>
         <% end %>
       </div>
