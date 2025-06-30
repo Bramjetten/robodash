@@ -2,9 +2,9 @@ module Widgetable
   extend ActiveSupport::Concern
 
   included do
-    # Destroying the widgetable (like Heartbeat) also destroys the widget
-    # TODO: destroy the widgetable if the widget is destroyed, we want no orphans!
     has_one :widget, as: :widgetable, dependent: :destroy, touch: true
+
+    scope :with_widget, -> (attributes) { joins(:widget).where(widget: attributes) }
   end
 
   class_methods do
@@ -36,18 +36,6 @@ module Widgetable
   # Warnings don't trigger alerts, but can be shown in the UI
   def warning?
     false
-  end
-
-  def new?
-    status == :new
-  end
-
-  def up?
-    status == :up
-  end
-
-  def down?
-    status == :down
   end
 
 end

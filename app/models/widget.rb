@@ -6,13 +6,14 @@
 # - UptimeMonitor
 class Widget < ApplicationRecord
   belongs_to :dashboard
-  belongs_to :widgetable, polymorphic: true
+  delegated_type :widgetable, types: %w[Heartbeat Counter UptimeMonitor]
+
+  after_destroy :destroy_widgetable
+  
+  accepts_nested_attributes_for :widgetable
 
   # Refresh a dashboard if anything changes
   broadcasts_refreshes_to :dashboard
-
-  # Scopes for different types of widgets
-  scope :heartbeats, -> { where(widgetable_type: "Heartbeat") }
 
   scope :not_alerted, -> { where(alerted_at: nil) }
   scope :alerted, -> { where.not(alerted_at: nil) }
@@ -22,7 +23,19 @@ class Widget < ApplicationRecord
   validates :name, presence: true, uniqueness: {scope: [:dashboard_id, :widgetable_type]}
 
   # Delegate status methods to the widgetable
-  delegate :status, :new?, :up?, :down?, :warning?, to: :widgetable
+  delegate :status, :warning?, to: :widgetable
+
+  def new?
+    status == :new
+  end
+
+  def up?
+    status == :up
+  end
+
+  def down?
+    status == :down
+  end
 
   def alerted?
     alerted_at.present?
@@ -45,6 +58,12 @@ class Widget < ApplicationRecord
   def alerted?
     alerted_at.present?
   end
+
+  private
+  
+    def destroy_widgetable
+      widgetable&.destroy
+    end
 
 end
 
