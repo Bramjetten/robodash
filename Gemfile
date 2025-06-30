@@ -9,7 +9,7 @@ gem "propshaft"
 gem "importmap-rails"
 gem "turbo-rails"
 gem "stimulus-rails"
-gem "tailwindcss-rails", "~> 4.0"
+gem "tailwindcss-rails", "4.3.0.rc2"
 
 # Database
 gem "sqlite3", ">= 2.1"
