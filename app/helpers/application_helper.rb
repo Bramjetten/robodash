@@ -9,7 +9,7 @@ module ApplicationHelper
     "https://github.com/bramjetten/robodash"
   end
 
-  def gem_url
+  def robodash_gem_url
     "https://github.com/Bramjetten/robodash-gem"
   end
 
