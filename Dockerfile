@@ -35,9 +35,19 @@ RUN apt-get update -qq && \
 
 # Install application gems
 COPY Gemfile Gemfile.lock ./
-RUN bundle install && \
-    rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git && \
-    bundle exec bootsnap precompile --gemfile
+RUN bundle install
+
+# Test if this is where it hangs
+RUN echo "Bundle install completed successfully"
+
+RUN rm -rf ~/.bundle/ 
+RUN rm -rf "${BUNDLE_PATH}"/ruby/*/cache
+RUN rm -rf "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git
+
+# Test if this is where it hangs
+RUN echo "Removed folders"
+
+RUN bundle exec bootsnap precompile --gemfile
 
 # Copy application code
 COPY . .
