@@ -41,7 +41,7 @@ RUN rm -rf ~/.bundle/
 RUN rm -rf "${BUNDLE_PATH}"/ruby/*/cache
 RUN rm -rf "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git
 
-RUN BOOTSNAP_LOG=1  bundle exec bootsnap precompile --gemfile
+# RUN BOOTSNAP_LOG=1  bundle exec bootsnap precompile --gemfile
 
 # Copy application code
 COPY . .
