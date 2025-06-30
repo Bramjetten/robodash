@@ -21,19 +21,7 @@ class Widget < ApplicationRecord
   validates :name, presence: true, uniqueness: {scope: [:dashboard_id, :widgetable_type]}
 
   # Delegate status methods to the widgetable
-  delegate :status, :warning?, to: :widgetable
-
-  def new?
-    status == :new
-  end
-
-  def up?
-    status == :up
-  end
-
-  def down?
-    status == :down
-  end
+  delegate :status, :up?, :down?, :new?, :warning?, to: :widgetable
 
   def alerted?
     alerted_at.present?

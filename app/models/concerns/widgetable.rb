@@ -38,5 +38,17 @@ module Widgetable
     false
   end
 
+  def new?
+    status == :new
+  end
+
+  def up?
+    status == :up
+  end
+
+  def down?
+    status == :down
+  end
+
 end
 
