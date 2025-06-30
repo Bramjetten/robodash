@@ -6,9 +6,7 @@
 # - UptimeMonitor
 class Widget < ApplicationRecord
   belongs_to :dashboard
-  delegated_type :widgetable, types: %w[Heartbeat Counter UptimeMonitor]
-
-  after_destroy :destroy_widgetable
+  delegated_type :widgetable, types: %w[Heartbeat Counter UptimeMonitor], dependent: :destroy
   
   accepts_nested_attributes_for :widgetable
 
@@ -58,12 +56,6 @@ class Widget < ApplicationRecord
   def alerted?
     alerted_at.present?
   end
-
-  private
-  
-    def destroy_widgetable
-      widgetable&.destroy
-    end
 
 end
 
