@@ -7,7 +7,7 @@ class Heartbeat < ApplicationRecord
 
   # For use in scopes
   PING_EXPECTED_BEFORE_SQL = <<~SQL
-    (now() - CAST(schedule_number||' '||schedule_period AS Interval) - CAST(grace_period||' seconds' AS Interval))
+    datetime('now', '-' || schedule_number || ' ' || schedule_period, '-' || grace_period || ' seconds')
   SQL
 
   # Each heartbeat needs a schedule and grace period
