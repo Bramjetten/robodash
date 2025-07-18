@@ -134,10 +134,17 @@
   </div>
 
   <% if @widgets.any? %>
-    <div class="bg-zinc-900 rounded-2xl p-4">
-      <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-start">
-        <%= render @widgets %>
-      </div>
+    <div class="bg-zinc-900 rounded-2xl p-4 space-y-5">
+      <% @widgets.group_by(&:group).each do |group, widgets| %>
+        <div>
+          <div class="text-zinc-400 font-bold bg-zinc-800 rounded-full px-2.5 inline-flex">
+            <%= group %>
+          </div>
+          <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-start">
+            <%= render widgets %>
+          </div>
+        </div>
+      <% end %>
     </div>
   <% else %>
     <div class="p-5 text-zinc-400 text-center col-span-4 rounded-full bg-zinc-700/40 backdrop-blur-md">Add something to monitor using the API</div>

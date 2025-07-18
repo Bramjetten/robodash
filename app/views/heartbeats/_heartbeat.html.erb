@@ -1,6 +1,10 @@
 <div class="text-sm">
   <div class="text-sm <%= heartbeat.down? ? 'text-red-500' : 'text-white' %>">
-    <%= time_ago_in_words heartbeat.pinged_at %> ago
+    <% if heartbeat.pinged_at %>
+      <%= time_ago_in_words heartbeat.pinged_at %> ago
+    <% else %>
+      –
+    <% end %>
   </div>
 
   <div class="flex items-center text-gray-400">

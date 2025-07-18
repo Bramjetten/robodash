@@ -23,6 +23,15 @@ class Widget < ApplicationRecord
   # Delegate status methods to the widgetable
   delegate :status, :up?, :down?, :new?, :warning?, to: :widgetable
 
+  def group
+    name.split(" ").first
+  end
+
+  def name_in_group
+    return group if name.split(" ").size == 1
+    name.split(" ").drop(1).join(" ").capitalize
+  end
+
   def alerted?
     alerted_at.present?
   end
