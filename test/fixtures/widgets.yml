@@ -1,0 +1,4 @@
+puma_backlog:
+  dashboard: plango
+  name: Puma Backlog
+  widgetable: puma_backlog (Measurement)
