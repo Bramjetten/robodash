@@ -1,0 +1,32 @@
+<%
+width = 150
+height = 50
+
+min_time, max_time = samples.map(&:timestamp).minmax
+min_value, max_value = 0, samples.map(&:value).max
+
+def normalize(value, min, max)
+  (value - min) / (max - min)
+end
+
+path_data = samples.map.with_index do |sample, index|
+  x_coord = normalize(sample.timestamp, min_time, max_time) * width
+  # Invert y_coord because the SVG origin is at the top left.
+  y_coord = height - normalize(sample.value.to_f, min_value, max_value) * height
+
+  "#{index.zero? ? 'M' : 'L'} #{x_coord},#{y_coord}"
+end.join(" ")
+%>
+
+<div class="rounded contain-paint py-1">
+  <div
+    style="--grid-color: color-mix(in oklab, var(--color-zinc-400) 7%, transparent)"
+    class="absolute inset-0 h-full w-full bg-zinc-800 bg-[linear-gradient(to_right,var(--grid-color)_1px,transparent_1px),linear-gradient(to_bottom,var(--grid-color)_1px,transparent_1px)] bg-size-[10px_10px] bg-center"
+  ></div>
+  <svg width="<%= width %>" height="<%= height %>" class="py-1 isolate text-white">
+    <path d="<%= path_data %>"
+          stroke="currentColor"
+          stroke-width="1px"
+          fill="none" />
+  </svg>
+</div>
