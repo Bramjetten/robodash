@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_30_084855) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_10_160036) do
   create_table "accounts", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -74,6 +74,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_30_084855) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "measurements", force: :cascade do |t|
+    t.string "unit"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "memberships", force: :cascade do |t|
     t.bigint "account_id", null: false
     t.bigint "user_id", null: false
@@ -82,6 +88,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_30_084855) do
     t.index ["account_id", "user_id"], name: "index_memberships_on_account_id_and_user_id", unique: true
     t.index ["account_id"], name: "index_memberships_on_account_id"
     t.index ["user_id"], name: "index_memberships_on_user_id"
+  end
+
+  create_table "samples", force: :cascade do |t|
+    t.integer "measurement_id", null: false
+    t.integer "value", default: 0, null: false
+    t.datetime "timestamp"
+    t.index ["measurement_id"], name: "index_samples_on_measurement_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -128,6 +141,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_30_084855) do
   add_foreign_key "dashboards", "accounts"
   add_foreign_key "memberships", "accounts"
   add_foreign_key "memberships", "users"
+  add_foreign_key "samples", "measurements"
   add_foreign_key "sessions", "users"
   add_foreign_key "widgets", "dashboards"
 end
