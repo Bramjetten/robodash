@@ -6,6 +6,8 @@ min_time, max_time = samples.map(&:timestamp).minmax
 min_value, max_value = 0, samples.map(&:value).max
 
 def normalize(value, min, max)
+  return 0 if max == min
+
   (value - min) / (max - min)
 end
 
