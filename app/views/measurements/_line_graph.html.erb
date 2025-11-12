@@ -20,12 +20,12 @@ path_data = samples.map.with_index do |sample, index|
 end.join(" ")
 %>
 
-<div class="rounded contain-paint py-1">
+<div class="rounded contain-paint py-1.5">
   <div
     style="--grid-color: color-mix(in oklab, var(--color-zinc-400) 7%, transparent)"
     class="absolute inset-0 h-full w-full bg-zinc-800 bg-[linear-gradient(to_right,var(--grid-color)_1px,transparent_1px),linear-gradient(to_bottom,var(--grid-color)_1px,transparent_1px)] bg-size-[10px_10px] bg-center"
   ></div>
-  <svg width="<%= width %>" height="<%= height %>" class="py-1 isolate text-white">
+  <svg width="<%= width %>" height="<%= height %>" class="isolate text-white">
     <path d="<%= path_data %>"
           stroke="currentColor"
           stroke-width="1px"
