@@ -8,11 +8,4 @@ class MeasurementTest < ActiveSupport::TestCase
 
     assert_equal 1, measurement.value
   end
-
-  test "only includes samples in the default window" do
-    measurement = measurements(:puma_backlog)
-    measurement.samples.create(value: 1, timestamp: (Measurement::SAMPLE_WINDOW + 1.minute).ago)
-
-    assert_empty measurement.samples.to_a
-  end
 end

@@ -9,6 +9,11 @@ production:
     queue: background
     priority: 1
     schedule: every minute
+  aggregate_samples:
+    class: AggregateSamplesJob
+    queue: background
+    priority: 1
+    schedule: every 10 minutes
   cleanup_samples:
     class: CleanupSamplesJob
     queue: background

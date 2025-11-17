@@ -1,7 +1,7 @@
 class CleanupSamplesJob < ApplicationJob
 
   def perform
-    Sample.where(timestamp: ...Measurement::SAMPLE_WINDOW.ago).delete_all
+    Sample.where(timestamp: ...25.hours.ago).delete_all
   end
 
 end
