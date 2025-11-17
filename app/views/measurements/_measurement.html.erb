@@ -1,6 +1,6 @@
 <div class="-mt-1">
   <div class="font-black text-2xl <%= measurement.down? ? 'text-red-500' : 'text-white' %>">
     <%= number_with_delimiter measurement.value %><span class="opacity-50 text-sm font-medium"><%= measurement.unit %></span>
-    <%= render "measurements/line_graph", samples: measurement.samples.where(timestamp: 24.hours.ago..) %>
+    <%= render "measurements/line_graph", samples: measurement.samples.where(timestamp: 25.hours.ago..) %>
   </div>
 </div>
