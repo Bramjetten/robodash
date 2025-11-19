@@ -4,9 +4,10 @@
 # - Heartbeat
 # - Counter
 # - UptimeMonitor
+# - Measurement
 class Widget < ApplicationRecord
   belongs_to :dashboard
-  delegated_type :widgetable, types: %w[Heartbeat Counter UptimeMonitor], dependent: :destroy
+  delegated_type :widgetable, types: %w[Heartbeat Counter UptimeMonitor Measurement], dependent: :destroy
   
   accepts_nested_attributes_for :widgetable
 

@@ -11,24 +11,44 @@ def normalize(value, min, max)
   (value - min) / (max - min)
 end
 
-path_data = samples.map.with_index do |sample, index|
+coordinates = samples.map do |sample|
   x_coord = normalize(sample.timestamp, min_time, max_time) * width
   # Invert y_coord because the SVG origin is at the top left.
   y_coord = height - normalize(sample.value.to_f, min_value, max_value) * height
+  [x_coord, y_coord, sample]
+end
 
-  "#{index.zero? ? 'M' : 'L'} #{x_coord},#{y_coord}"
+path_data = coordinates.map.with_index do |coordinates, index|
+  "#{index.zero? ? 'M' : 'L'} #{coordinates.first},#{coordinates.second}"
 end.join(" ")
 %>
 
-<div class="rounded contain-paint py-1.5">
-  <div
-    style="--grid-color: color-mix(in oklab, var(--color-zinc-400) 7%, transparent)"
-    class="absolute inset-0 h-full w-full bg-zinc-800 bg-[linear-gradient(to_right,var(--grid-color)_1px,transparent_1px),linear-gradient(to_bottom,var(--grid-color)_1px,transparent_1px)] bg-size-[10px_10px] bg-center"
-  ></div>
-  <svg width="<%= width %>" height="<%= height %>" class="isolate text-white">
-    <path d="<%= path_data %>"
-          stroke="currentColor"
-          stroke-width="1px"
-          fill="none" />
-  </svg>
+<div class="relative">
+  <div class="right-0 translate-x-full absolute top-0 bottom-0 text-gray-500 py-0.5 px-2 flex flex-col justify-between leading-none text-[11px] font-normal">
+    <div><%= max_value %></div>
+    <%= min_value %>
+  </div>
+
+  <div class="absolute z-10 inset-0">
+    <% coordinates.each do |x, y, sample| %>
+      <div class="absolute hover:opacity-100 opacity-0 z-10 w-2 h-full top-0 -translate-x-1/2" style="left: <%= x %>px">
+        <div class="absolute bottom-0 translate-y-full text-[11px] font-normal text-center left-0 right-0">
+          <%= sample.value %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  
+  <div class="rounded-md contain-paint py-1.5">
+    <div
+      style="--grid-color: color-mix(in oklab, var(--color-zinc-400) 7%, transparent)"
+      class="absolute inset-0 h-full w-full bg-zinc-800 bg-[linear-gradient(to_right,var(--grid-color)_1px,transparent_1px),linear-gradient(to_bottom,var(--grid-color)_1px,transparent_1px)] bg-size-[10px_10px] bg-center"
+    ></div>
+    <svg width="<%= width %>" height="<%= height %>" class="isolate text-white">
+      <path d="<%= path_data %>"
+            stroke="currentColor"
+            stroke-width="1px"
+            fill="none" />
+    </svg>
+  </div>
 </div>
