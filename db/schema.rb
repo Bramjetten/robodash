@@ -94,11 +94,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_10_160036) do
     t.integer "measurement_id", null: false
     t.integer "value", default: 0, null: false
     t.datetime "timestamp"
+    t.integer "min"
+    t.integer "max"
     t.index ["measurement_id"], name: "index_samples_on_measurement_id"
   end
 
   create_table "sessions", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.string "ip_address"
     t.string "user_agent"
     t.datetime "created_at", null: false
