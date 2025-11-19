@@ -69,6 +69,7 @@ volumes:
   - "volume_ams3_01:/rails/storage"
   - "/var/app/shared/fonts:/rails/app/assets/fonts/licensed"
   - "/var/app/shared/assets:/rails/public/assets"
+  - "/var/app/shared/builds:/rails/app/assets/builds"
 
 # Bridge fingerprinted assets, like JS and CSS, between versions to avoid
 # hitting 404 on in-flight requests. Combines all files from new and old
