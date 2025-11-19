@@ -46,9 +46,6 @@ RUN bundle exec bootsnap precompile --gemfile
 # Copy application code
 COPY . .
 
-# Copy fonts from build context
-COPY .kamal-build-context/fonts ./app/assets/fonts/licensed/
-
 # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/
 

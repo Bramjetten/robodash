@@ -1,7 +1,0 @@
-#!/bin/bash
-set -e
-
-mkdir -p .kamal-build-context/fonts
-cp -r app/assets/fonts/licensed/* .kamal-build-context/fonts/
-
-echo "Fonts copied to build context"
