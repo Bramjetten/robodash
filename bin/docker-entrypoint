@@ -9,7 +9,12 @@ fi
 # If running the rails server then create or migrate existing database
 if [ "${@: -2:1}" == "./bin/rails" ] && [ "${@: -1:1}" == "server" ]; then
   ./bin/rails db:prepare
-  ./bin/rails assets:precompile
+
+  # Precompile assets if public/assets doesnt exist yet
+  if [ ! -d "public/assets" ] || [ -z "$(ls -A public/assets 2>/dev/null)" ]; then
+    echo "No precompiled assets found, precompiling..."
+    ./bin/rails assets:precompile
+  fi
 fi
 
 exec "${@}"
