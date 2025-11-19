@@ -37,5 +37,9 @@
 /app/assets/builds/*
 !/app/assets/builds/.keep
 
+# Licensed fonts
+/app/assets/fonts/licensed/*
+!/app/assets/fonts/licensed/.keep
+
 */.DS_Store
 .DS_Store
