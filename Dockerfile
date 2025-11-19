@@ -46,6 +46,8 @@ RUN bundle exec bootsnap precompile --gemfile
 # Copy application code
 COPY . .
 
+RUN ls -la app/assets/fonts/licensed/  # Add this debug line
+
 # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/
 
