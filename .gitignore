@@ -38,6 +38,7 @@
 !/app/assets/builds/.keep
 
 # Licensed fonts
+.kamal-build-context/
 /app/assets/fonts/licensed/*
 !/app/assets/fonts/licensed/.keep
 

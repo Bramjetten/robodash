@@ -1,0 +1,7 @@
+#!/bin/bash
+set -e
+
+# Cleanup temporary fonts
+rm -rf .kamal-build-context
+
+echo "Build context cleaned up"
