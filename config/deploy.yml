@@ -67,7 +67,6 @@ aliases:
 # Recommended to change this to a mounted volume path that is backed up off server.
 volumes:
   - "volume_ams3_01:/rails/storage"
-  - "/var/app/shared/fonts:/rails/app/assets/fonts/licensed"
 
 # Bridge fingerprinted assets, like JS and CSS, between versions to avoid
 # hitting 404 on in-flight requests. Combines all files from new and old
