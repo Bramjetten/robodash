@@ -18,7 +18,7 @@ class Heartbeat < ApplicationRecord
   scope :up, -> { where("pinged_at >= #{PING_EXPECTED_BEFORE_SQL}") }
 
   def status
-    return :new if pinged_at.blank?
+    return :pending if pinged_at.blank?
     pinged_at > ping_expected_before ? :up : :down
   end
 

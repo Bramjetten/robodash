@@ -8,7 +8,7 @@
 class Widget < ApplicationRecord
   belongs_to :dashboard
   delegated_type :widgetable, types: %w[Heartbeat Counter UptimeMonitor Measurement], dependent: :destroy
-  
+
   accepts_nested_attributes_for :widgetable
 
   # Refresh a dashboard if anything changes
@@ -21,8 +21,10 @@ class Widget < ApplicationRecord
   # There can only be one widget with the same name and type in a dashboard
   validates :name, presence: true, uniqueness: {scope: [:dashboard_id, :widgetable_type]}
 
-  # Delegate status methods to the widgetable
-  delegate :status, :up?, :down?, :new?, :warning?, to: :widgetable
+  enum :status, {pending: 0, up: 1, down: 2, warning: 3}, default: :pending
+
+  # Save current status
+  before_save -> { self.status = widgetable.status }
 
   def group
     name.split(" ").first

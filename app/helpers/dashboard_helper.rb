@@ -1,11 +1,11 @@
 module DashboardHelper
 
   def issue_count
-    @issue_count ||= @dashboard.widgets.to_a.select(&:down?).size
+    @issue_count ||= @dashboard.widgets.down.count
   end
 
   def warning_count
-    @warning_count ||= @dashboard.widgets.to_a.select(&:warning?).size
+    @warning_count ||= @dashboard.widgets.warning.count
   end
 
 end

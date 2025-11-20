@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_17_072225) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_20_103046) do
   create_table "accounts", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -132,6 +132,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_17_072225) do
     t.datetime "alerted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0, null: false
     t.index ["dashboard_id"], name: "index_widgets_on_dashboard_id"
     t.index ["name", "dashboard_id", "widgetable_type"], name: "index_widgets_on_name_and_dashboard_id_and_widgetable_type", unique: true
     t.index ["widgetable_type", "widgetable_id"], name: "index_widgets_on_widgetable"
