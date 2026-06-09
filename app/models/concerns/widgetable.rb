@@ -2,7 +2,8 @@ module Widgetable
   extend ActiveSupport::Concern
 
   included do
-    has_one :widget, as: :widgetable, dependent: :destroy, touch: true
+    has_one :widget, as: :widgetable, dependent: :destroy
+    after_save { widget&.save }
 
     scope :with_widget, -> (attributes) { joins(:widget).where(widget: attributes) }
   end
