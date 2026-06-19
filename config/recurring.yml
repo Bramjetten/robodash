@@ -19,3 +19,10 @@ production:
     queue: background
     priority: 1
     schedule: every 10 minutes
+  vacuum_databases:
+    class: VacuumDatabasesJob
+    queue: background
+    priority: 1
+    # SQLite never shrinks its files on its own; compact them weekly so freed
+    # pages (cleared jobs, expired cache, deleted samples) return to disk.
+    schedule: "0 3 * * 0" # every Sunday at 03:00
