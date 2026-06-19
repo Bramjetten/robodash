@@ -26,22 +26,18 @@ class WidgetAlert
 
   class << self
     def create(widget)
-      widget.transaction do
-        widget.touch(:alerted_at)
-        widget.dashboard.notification_email_addresses.each do |email_address|
-          WidgetAlertMailer.alert(widget, email_address).deliver_later
-        end
+      widget.update!(alerted_at: Time.current)
+      widget.dashboard.notification_email_addresses.each do |email_address|
+        WidgetAlertMailer.alert(widget, email_address).deliver_later
       end
 
       new(widget)
     end
 
     def clear(widget)
-      widget.transaction do
-        widget.update(alerted_at: nil)
-        widget.dashboard.notification_email_addresses.each do |email_address|
-          WidgetAlertMailer.clear(widget, email_address).deliver_later
-        end
+      widget.update!(alerted_at: nil)
+      widget.dashboard.notification_email_addresses.each do |email_address|
+        WidgetAlertMailer.clear(widget, email_address).deliver_later
       end
 
       new(widget)
