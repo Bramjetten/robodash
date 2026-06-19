@@ -13,12 +13,8 @@ class Dashboard < ApplicationRecord
   end
 
   # A dashboard is down if any of its widgets are down
-  # This is not cached and potentially quite slow
-  #
-  # Could be more efficient, but would require knowledge 
-  # of all existing widgetables. Not great design.
   def down?
-    widgets.any?(&:down?)
+    widgets.down.exists?
   end
 
 end

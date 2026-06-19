@@ -2,7 +2,7 @@ class DashboardsController < ApplicationController
   before_action :set_dashboard
 
   def show
-    @widgets = @dashboard.widgets.order(:name)
+    @widgets = @dashboard.widgets.includes(:widgetable).order(:name)
   end
 
   def edit

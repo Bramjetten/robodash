@@ -1,6 +1,6 @@
 # TODO: parse response_code with string (like OK, Not Found, etc.)
 # TODO: make it so that this needs to be verified twice
-# TODO: different way to detect down/up, add status :new
+# TODO: different way to detect down/up, add status :pending
 class UptimeMonitor < ApplicationRecord
   include Alertable, Widgetable
 

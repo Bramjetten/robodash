@@ -6,12 +6,12 @@ class AggregateSamplesJob < ApplicationJob
         aggregated_samples = measurement
           .samples
           .where(timestamp: aggregation_window)
-          .select("group_concat(id) as ids, strftime('%Y-%m-%d %H:%M', samples.timestamp) AS timestamp, MAX(value) as value")
+          .select("group_concat(id) as ids, strftime('%Y-%m-%d %H:%M', samples.timestamp) AS timestamp, MIN(value) as min, MEDIAN(value) as value, MAX(value) as max")
           .group("strftime('%Y-%m-%d %H:%M', samples.timestamp)")
           .having("COUNT(id) > 1")
 
         measurement.samples.where(id: aggregated_samples.flat_map { _1.ids.split(",").map(&:to_i) }).delete_all
-        measurement.samples.insert_all(aggregated_samples.as_json(only: [:timestamp, :value]))
+        measurement.samples.insert_all(aggregated_samples.as_json(only: [:timestamp, :value, :min, :max]))
       end
     end
   end

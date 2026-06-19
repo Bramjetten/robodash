@@ -2,7 +2,8 @@ module Widgetable
   extend ActiveSupport::Concern
 
   included do
-    has_one :widget, as: :widgetable, dependent: :destroy, touch: true
+    has_one :widget, as: :widgetable, dependent: :destroy
+    after_save { widget&.save }
 
     scope :with_widget, -> (attributes) { joins(:widget).where(widget: attributes) }
   end
@@ -24,7 +25,7 @@ module Widgetable
   end
 
   # Each widgetable must implement this method and return
-  # :new, :up or :down
+  # :pending, :up or :down
   def status
     raise NotImplementedError, "#{self.class} must implement #status"
   end
@@ -38,8 +39,8 @@ module Widgetable
     false
   end
 
-  def new?
-    status == :new
+  def pending?
+    status == :pending
   end
 
   def up?
