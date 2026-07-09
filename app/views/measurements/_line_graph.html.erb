@@ -3,7 +3,7 @@ width = 150
 height = 50
 
 min_time, max_time = samples.map(&:timestamp).minmax
-min_value, max_value = 0, samples.map(&:value).max
+min_value, max_value = 0, samples.map { it.max || it.value }.max
 
 def normalize(value, min, max)
   return 0 if max == min
@@ -21,6 +21,20 @@ end
 path_data = coordinates.map.with_index do |coordinates, index|
   "#{index.zero? ? 'M' : 'L'} #{coordinates.first},#{coordinates.second}"
 end.join(" ")
+
+# Band between the min and max of each sample; non-aggregated samples
+# fall back to their value so the band runs through.
+band_points = coordinates.map do |x, _y, sample|
+  max_y = height - normalize((sample.max || sample.value).to_f, min_value, max_value) * height
+  min_y = height - normalize((sample.min || sample.value).to_f, min_value, max_value) * height
+  [x, max_y, min_y]
+end
+
+band_data = band_points.map.with_index do |(x, max_y, _), index|
+  "#{index.zero? ? 'M' : 'L'} #{x},#{max_y}"
+end.join(" ")
+band_data << band_points.reverse.map { |x, _, min_y| " L #{x},#{min_y}" }.join
+band_data << " Z"
 %>
 
 <div class="relative">
@@ -38,13 +52,16 @@ end.join(" ")
       </div>
     <% end %>
   </div>
-  
+
   <div class="rounded-md contain-paint py-1.5">
     <div
       style="--grid-color: color-mix(in oklab, var(--color-zinc-400) 7%, transparent)"
       class="absolute inset-0 h-full w-full bg-zinc-800 bg-[linear-gradient(to_right,var(--grid-color)_1px,transparent_1px),linear-gradient(to_bottom,var(--grid-color)_1px,transparent_1px)] bg-size-[10px_10px] bg-center"
     ></div>
     <svg width="<%= width %>" height="<%= height %>" class="isolate text-white">
+      <path d="<%= band_data %>"
+            fill="currentColor"
+            fill-opacity="0.15" />
       <path d="<%= path_data %>"
             stroke="currentColor"
             stroke-width="1px"
