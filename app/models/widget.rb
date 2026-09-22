@@ -11,9 +11,6 @@ class Widget < ApplicationRecord
 
   accepts_nested_attributes_for :widgetable
 
-  # Refresh a dashboard if anything changes
-  broadcasts_refreshes_to :dashboard
-
   scope :not_alerted, -> { where(alerted_at: nil) }
   scope :alerted, -> { where.not(alerted_at: nil) }
 
