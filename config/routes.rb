@@ -3,6 +3,12 @@ Rails.application.routes.draw do
     post "ping" => "ping#create"
     post "count" => "count#create"
     resources :measurements, only: [ :create ]
+
+    # Companion apps (iOS, watchOS)
+    namespace :v1, defaults: { format: :json } do
+      resource :session, only: [ :create, :destroy ]
+      resources :dashboards, only: [ :index, :show ]
+    end
   end
 
   # Sessions
