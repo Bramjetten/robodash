@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_secure_password
   has_many :sessions, dependent: :destroy
   has_many :push_devices, through: :sessions
+  has_many :favorites, dependent: :destroy
 
   has_many :memberships, dependent: :destroy
   has_many :accounts, through: :memberships
