@@ -10,12 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_20_103046) do
+ActiveRecord::Schema[8.0].define(version: 2026_10_01_165129) do
   create_table "accounts", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index "lower(name)", name: "index_accounts_on_lower_name", unique: true
+  end
+
+  create_table "action_push_native_devices", force: :cascade do |t|
+    t.string "name"
+    t.string "platform", null: false
+    t.string "token", null: false
+    t.string "owner_type"
+    t.integer "owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_type", "owner_id"], name: "index_action_push_native_devices_on_owner"
+    t.index ["token"], name: "index_action_push_native_devices_on_token", unique: true
   end
 
   create_table "active_storage_attachments", force: :cascade do |t|

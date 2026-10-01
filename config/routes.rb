@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     # Companion apps (iOS, watchOS)
     namespace :v1, defaults: { format: :json } do
       resource :session, only: [ :create, :destroy ]
+      resource :push_device, only: [ :create ]
       resources :dashboards, only: [ :index, :show ]
     end
   end
