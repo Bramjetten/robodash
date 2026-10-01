@@ -5,6 +5,7 @@ json.type widget.widgetable_type.underscore
 json.status widgetable.status
 json.warning widgetable.warning?
 json.updated_at widgetable.updated_at
+json.favorite @favorite_widget_ids.include?(widget.id)
 
 case widgetable
 when Heartbeat

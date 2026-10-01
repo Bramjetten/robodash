@@ -9,6 +9,9 @@ Rails.application.routes.draw do
       resource :session, only: [ :create, :destroy ]
       resource :push_device, only: [ :create ]
       resources :dashboards, only: [ :index, :show ]
+      resources :widgets, only: [] do
+        resource :favorite, only: [ :create, :destroy ]
+      end
     end
   end
 

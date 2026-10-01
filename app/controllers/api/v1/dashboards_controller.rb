@@ -10,6 +10,7 @@ module API
 
       def show
         @dashboard = dashboards.find(params[:id])
+        @favorite_widget_ids = Current.user.favorites.where(widget: @dashboard.widgets).pluck(:widget_id).to_set
       end
 
       private
