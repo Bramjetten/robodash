@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_10_02_093509) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_02_093509) do
   create_table "accounts", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -71,7 +71,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_10_02_093509) do
     t.string "token", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "account_id", null: false
+    t.bigint "account_id", null: false
     t.index ["account_id"], name: "index_dashboards_on_account_id"
     t.index ["token"], name: "index_dashboards_on_token", unique: true
   end
@@ -103,8 +103,8 @@ ActiveRecord::Schema[8.0].define(version: 2026_10_02_093509) do
   end
 
   create_table "memberships", force: :cascade do |t|
-    t.integer "account_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "account_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id", "user_id"], name: "index_memberships_on_account_id_and_user_id", unique: true
@@ -130,7 +130,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_10_02_093509) do
   end
 
   create_table "sessions", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.string "ip_address"
     t.string "user_agent"
     t.datetime "created_at", null: false
@@ -162,9 +162,9 @@ ActiveRecord::Schema[8.0].define(version: 2026_10_02_093509) do
   end
 
   create_table "widgets", force: :cascade do |t|
-    t.integer "dashboard_id", null: false
+    t.bigint "dashboard_id", null: false
     t.string "widgetable_type", null: false
-    t.integer "widgetable_id", null: false
+    t.bigint "widgetable_id", null: false
     t.string "name"
     t.datetime "alerted_at"
     t.datetime "created_at", null: false
