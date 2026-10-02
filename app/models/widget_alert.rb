@@ -49,9 +49,13 @@ class WidgetAlert
 
       # content-available wakes the app so it can refresh its widgets right away.
       # APNs would treat that as a background push, so the push type is set explicitly.
+      # Something going down is time sensitive: it breaks through Focus modes.
       def push_notification(widget, status, message)
+        aps = { "content-available": 1 }
+        aps[:"interruption-level"] = "time-sensitive" if status == :down
+
         ApplicationPushNotification
-          .with_apple(aps: { "content-available": 1 }, "apns-push-type": "alert")
+          .with_apple(aps:, "apns-push-type": "alert")
           .with_data(dashboard_id: widget.dashboard_id, widget_id: widget.id, status: status.to_s)
           .new(
             title: "#{widget.name} is #{status}",
