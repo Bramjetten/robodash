@@ -12,6 +12,8 @@ class Widget < ApplicationRecord
   accepts_nested_attributes_for :widgetable
 
   has_many :favorites, dependent: :destroy
+  has_many :readings, dependent: :delete_all
+  has_many :status_changes, dependent: :delete_all
 
   scope :not_alerted, -> { where(alerted_at: nil) }
   scope :alerted, -> { where.not(alerted_at: nil) }

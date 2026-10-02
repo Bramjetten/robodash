@@ -14,6 +14,9 @@ class Heartbeat < ApplicationRecord
   validates :schedule_period, inclusion: { in: SCHEDULE_PERIODS }
   validates :schedule_number, :grace_period, presence: true, numericality: { greater_than: 0, only_integer: true } 
 
+  # Keep a history of pings for the iOS app
+  after_save_commit -> { widget&.readings&.create!(created_at: pinged_at) }, if: -> { saved_change_to_pinged_at? && pinged_at.present? }
+
   scope :down, -> { where("pinged_at < #{PING_EXPECTED_BEFORE_SQL}") }
   scope :up, -> { where("pinged_at >= #{PING_EXPECTED_BEFORE_SQL}") }
 

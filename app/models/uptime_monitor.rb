@@ -28,6 +28,9 @@ class UptimeMonitor < ApplicationRecord
     update(response_code: response[:response].code, response_time: response[:time])
   rescue
     update(response_code: nil, response_time: nil)
+  ensure
+    # Keep a history of checks for the iOS app
+    widget&.readings&.create!(value: response_time, code: response_code)
   end
 
   private
