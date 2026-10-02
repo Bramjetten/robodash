@@ -29,6 +29,16 @@ class WidgetAlertTest < ActiveSupport::TestCase
     end
   end
 
+  test "something going down breaks through Focus, being back up doesn't" do
+    WidgetAlert.create(@widget)
+    WidgetAlert.clear(@widget)
+
+    levels = enqueued_jobs.select { it["job_class"] == "ApplicationPushNotificationJob" }.map do |job|
+      ActiveJob::Arguments.deserialize(job["arguments"]).second.dig(:apple_data, :aps, :"interruption-level")
+    end
+    assert_equal [ "time-sensitive", nil ], levels
+  end
+
   private
 
     def push_args((notification_class, attributes, device), status)
