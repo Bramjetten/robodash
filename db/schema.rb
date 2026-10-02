@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_10_01_172948) do
+ActiveRecord::Schema[8.0].define(version: 2026_10_02_093509) do
   create_table "accounts", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -112,6 +112,14 @@ ActiveRecord::Schema[8.0].define(version: 2026_10_01_172948) do
     t.index ["user_id"], name: "index_memberships_on_user_id"
   end
 
+  create_table "readings", force: :cascade do |t|
+    t.integer "widget_id", null: false
+    t.integer "value"
+    t.integer "code"
+    t.datetime "created_at", null: false
+    t.index ["widget_id", "created_at"], name: "index_readings_on_widget_id_and_created_at"
+  end
+
   create_table "samples", force: :cascade do |t|
     t.integer "measurement_id", null: false
     t.integer "value", default: 0, null: false
@@ -128,6 +136,13 @@ ActiveRecord::Schema[8.0].define(version: 2026_10_01_172948) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_sessions_on_user_id"
+  end
+
+  create_table "status_changes", force: :cascade do |t|
+    t.integer "widget_id", null: false
+    t.string "status", null: false
+    t.datetime "created_at", null: false
+    t.index ["widget_id", "created_at"], name: "index_status_changes_on_widget_id_and_created_at"
   end
 
   create_table "uptime_monitors", force: :cascade do |t|
@@ -168,7 +183,9 @@ ActiveRecord::Schema[8.0].define(version: 2026_10_01_172948) do
   add_foreign_key "favorites", "widgets"
   add_foreign_key "memberships", "accounts"
   add_foreign_key "memberships", "users"
+  add_foreign_key "readings", "widgets"
   add_foreign_key "samples", "measurements"
   add_foreign_key "sessions", "users"
+  add_foreign_key "status_changes", "widgets"
   add_foreign_key "widgets", "dashboards"
 end

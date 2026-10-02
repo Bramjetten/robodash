@@ -27,6 +27,7 @@ class WidgetAlert
   class << self
     def create(widget)
       widget.update!(alerted_at: Time.current)
+      widget.status_changes.create!(status: "down")
       widget.dashboard.notification_email_addresses.each do |email_address|
         WidgetAlertMailer.alert(widget, email_address).deliver_later
       end
@@ -37,6 +38,7 @@ class WidgetAlert
 
     def clear(widget)
       widget.update!(alerted_at: nil)
+      widget.status_changes.create!(status: "up")
       widget.dashboard.notification_email_addresses.each do |email_address|
         WidgetAlertMailer.clear(widget, email_address).deliver_later
       end

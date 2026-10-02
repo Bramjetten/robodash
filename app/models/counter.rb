@@ -3,6 +3,9 @@
 class Counter < ApplicationRecord
   include Alertable, Widgetable
 
+  # Keep a history of counts for the iOS app
+  after_save_commit -> { widget&.readings&.create!(value: count) }, if: :saved_change_to_count?
+
   scope :down, -> { where("(min IS NOT NULL AND count < min) OR (max IS NOT NULL AND count > max)") }
   scope :up, -> { where("(min IS NULL OR count >= min) AND (max IS NULL OR count <= max)") }
 
